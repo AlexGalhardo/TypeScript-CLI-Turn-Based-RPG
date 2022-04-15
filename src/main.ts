@@ -1,6 +1,6 @@
-import promptSync from "prompt-sync";
+import promptSync from 'prompt-sync';
 
-import startGame from "./functions/startGame";
+import startGame from './functions/startGame';
 
 export const userInput = promptSync({ sigint: true });
 

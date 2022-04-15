@@ -5,8 +5,10 @@ import GameStatistics from "../classes/GameStatistics";
 import Monster from "../classes/Monster";
 import playerAction from "./playerAction";
 
-export default function fightMonster(player: Character, monster: Monster) {
+export default function fightMonster(player: Character, monster: Monster): boolean {
+
     while (true) {
+
         player.printCharacterRoundStatus();
         monster.printMonsterRoundStatus();
 
@@ -29,6 +31,7 @@ export default function fightMonster(player: Character, monster: Monster) {
             }
 
             player.takeDamage(monster.attack());
+            player.regenerateEachRound();
 
             if (player.isDead()) {
                 return false;
@@ -40,6 +43,7 @@ export default function fightMonster(player: Character, monster: Monster) {
                 console.log(`\t Player Looted: ${monster.lootAfterKill} gold coins!`);
                 console.log(`\t Player Received: ${monster.experienceForKill} points of experience!`);
                 console.log(`\t Player Currently Experience: ${player.currentlyEXP} points experience`);
+                console.log(`\t Player needs ${player.expToNextLevel} points experience to level up!`);
 
                 return true;
             }

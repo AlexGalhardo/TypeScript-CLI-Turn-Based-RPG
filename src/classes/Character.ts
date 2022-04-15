@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { PLAYER_MAX_ATTACK, PLAYER_MIN_ATTACK, PLAYER_START_LIFE_POINTS } from "../GLOBAL";
+import { PLAYER_MAX_ATTACK, PLAYER_MIN_ATTACK, PLAYER_START_LIFE_POINTS, PLAYER_START_MANA_POINTS } from "../GLOBAL";
 import { userInput } from "../main";
 import GameStatistics from "./GameStatistics";
 import LivingBeing, { ILivingBeing } from "./LivingBeing";
@@ -10,7 +10,11 @@ interface ICharacter extends ILivingBeing {
     expToNextLevel: number;
     maxLifePoints: number;
     maxManaPoints: number;
-    currentlyManaPoints: number;
+    manaPoints: number;
+    addLifePointsPerLevel: number;
+    addManaPointsPerLevel: number;
+    regenerateLifePointsPerRound: number;
+    regenerateManaPointsPerRound: number;
     currentlyHealthPotions: number;
     currentlyManaPotions: number;
     currentlyGoldCoins: number;
@@ -31,7 +35,7 @@ export default abstract class Character extends LivingBeing implements ICharacte
     public expToNextLevel: number;
     public maxLifePoints: number;
     public maxManaPoints: number;
-    public currentlyManaPoints: number;
+    public manaPoints: number;
     public currentlyHealthPotions: number;
     public currentlyManaPotions: number;
     public currentlyGoldCoins: number;
@@ -41,8 +45,10 @@ export default abstract class Character extends LivingBeing implements ICharacte
         public name: string,
         public minAttack: number,
         public maxAttack: number,
-        public LifePointsPerLevel: number,
-        public manaPointsPerLevel: number
+        public addLifePointsPerLevel: number,
+        public addManaPointsPerLevel: number,
+        public regenerateLifePointsPerRound: number,
+        public regenerateManaPointsPerRound: number
     ) {
         super(name, PLAYER_START_LIFE_POINTS, PLAYER_MIN_ATTACK, PLAYER_MAX_ATTACK);
 
@@ -59,10 +65,13 @@ export default abstract class Character extends LivingBeing implements ICharacte
         this.minAttack = minAttack;
         this.maxAttack = maxAttack;
 
-        this.currentlyManaPoints = 100;
+        this.manaPoints = PLAYER_START_MANA_POINTS;
 
-        this.LifePointsPerLevel = LifePointsPerLevel;
-        this.manaPointsPerLevel = manaPointsPerLevel;
+        this.addLifePointsPerLevel = addLifePointsPerLevel;
+        this.addManaPointsPerLevel = addManaPointsPerLevel;
+
+        this.regenerateLifePointsPerRound = regenerateLifePointsPerRound;
+        this.regenerateManaPointsPerRound = regenerateManaPointsPerRound;
 
         this.currentlyHealthPotions = 0;
         this.currentlyManaPotions = 0;
@@ -73,7 +82,7 @@ export default abstract class Character extends LivingBeing implements ICharacte
     printCharacterRoundStatus() {
         console.log("\n\t --- PLAYER STATUS ---");
         console.log(`\t Life: ${this.lifePoints}`);
-        console.log(`\t Mana: ${this.currentlyManaPoints}`);
+        console.log(`\t Mana: ${this.manaPoints}`);
         console.log(`\t Health Potions: ${this.currentlyHealthPotions}`);
         console.log(`\t Mana Potions: ${this.currentlyManaPotions}`);
     }
@@ -103,7 +112,12 @@ export default abstract class Character extends LivingBeing implements ICharacte
     }
 
     addManaPotions(manaPotions: number): void {
-        this.currentlyManaPoints += manaPotions
+        this.manaPoints += manaPotions
+    }
+
+    regenerateEachRound(): void {
+        this.lifePoints += this.regenerateLifePointsPerRound;
+        this.manaPoints += this.regenerateManaPointsPerRound;
     }
 
     useHealthPotion(): void {
@@ -154,7 +168,7 @@ export default abstract class Character extends LivingBeing implements ICharacte
 
                 while (manaPotionsToUse !== 0) {
                     const manaCure = Math.floor(Math.random() * 125) + 75;
-                    this.currentlyManaPoints += manaCure;
+                    this.manaPoints += manaCure;
                     this.currentlyManaPotions -= 1;
                     console.log(`\t You healed ${manaCure} points of life!`);
                     manaPotionsToUse -= 1;

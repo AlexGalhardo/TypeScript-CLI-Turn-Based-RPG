@@ -6,6 +6,7 @@ interface IMonster {
     minLoot: number;
     maxLoot: number;
     lootAfterKill: number;
+    type?: string;
     printMonsterRoundStatus(): void;
     takeDamage(playerDamage: number): void;
 }
@@ -18,11 +19,13 @@ export default abstract class Monster extends LivingBeing implements IMonster {
         public experienceForKill: number,
         public minLoot: number,
         public maxLoot: number,
-        public lootAfterKill: number = 0
+        public lootAfterKill: number = 0,
+        public type?: string | undefined,
     ) {
         super(name, lifePoints, minAttack, maxAttack);
         this.experienceForKill = experienceForKill;
         this.lootAfterKill = Math.floor(Math.random() * maxLoot) + minLoot;
+        this.type = type;
     }
 
     printMonsterRoundStatus(): void {

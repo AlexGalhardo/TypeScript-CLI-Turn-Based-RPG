@@ -84,7 +84,7 @@ export default function npcRound(player: Character) {
                         player.addManaPotions(manaPotions);
 
                         console.log(`\t Currently Cold Coins: ${player.currentlyGoldCoins}`);
-                        console.log(`\t Currently Mana Potions: ${player.currentlyManaPoints}`);
+                        console.log(`\t Currently Mana Potions: ${player.currentlyManaPotions}`);
                         break;
                     } else {
                         console.log("\n\t YOU DONT HAVE SUFFICIENT GOLD COINS!");

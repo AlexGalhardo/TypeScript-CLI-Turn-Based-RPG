@@ -11,7 +11,9 @@ export default class Ferumbras extends Monster {
             FERUMBRAS_MAX_ATTACK,
             FERUMBRAS_EXPERIENCE_FOR_KILL,
             FERUMBRAS_MIN_LOOT,
-            FERUMBRAS_MAX_LOOT
+            FERUMBRAS_MAX_LOOT,
+            0, // LOOT_AFTER_KILL DEFAULT IS 0
+            'BOSS'
         );
     }
 }
