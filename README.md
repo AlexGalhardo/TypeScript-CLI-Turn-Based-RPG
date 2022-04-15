@@ -5,13 +5,10 @@
   - This is the refactored version of Python CLI RPG using TypeScript.
   - I created this project mostly to improve my logic, OOP and clean code skills, refactoring the previously project who was written with Python, and of course, to learn mostly TypeScript syntax.
 
-## How To Use This Program
+## How To Use This Program (Play The Game)
   - $ git clone https://github.com/AlexGalhardo/TypeScript-CLI-RPG.git
   - $ cd TypeScript-CLI-RPG
-  - <b>Using Deno:</b>
-     - $ deno run src/main.ts
-  - <b>Using NodeJS</b>:
-     - $ npm run start:game
+  - $ npm run start:game
 
 ## Tools I Used
 - Linux Mint XFCE 20.03 Una

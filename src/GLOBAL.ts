@@ -1,6 +1,8 @@
 export const PLAYER_MIN_ATTACK = 20;
 export const PLAYER_MAX_ATTACK = 100;
 
+export const PLAYER_START_LIFE_POINTS = 200;
+
 export const WARRIOR_ADD_HEALTH_PER_LEVEL = 75;
 export const WARRIOR_ADD_MANA_PER_LEVEL = 75;
 
@@ -19,6 +21,20 @@ export const ORC_MAX_ATTACK = 100;
 export const ORC_EXPERIENCE_FOR_KILL = 35;
 export const ORC_MIN_LOOT = 70;
 export const ORC_MAX_LOOT = 50;
+
+export const WEREWOLF_HEALTH_POINTS = 250;
+export const WEREWOLF_MIN_ATTACK = 15;
+export const WEREWOLF_MAX_ATTACK = 100;
+export const WEREWOLF_EXPERIENCE_FOR_KILL = 35;
+export const WEREWOLF_MIN_LOOT = 70;
+export const WEREWOLF_MAX_LOOT = 50;
+
+export const VAMPIRE_HEALTH_POINTS = 250;
+export const VAMPIRE_MIN_ATTACK = 15;
+export const VAMPIRE_MAX_ATTACK = 100;
+export const VAMPIRE_EXPERIENCE_FOR_KILL = 35;
+export const VAMPIRE_MIN_LOOT = 70;
+export const VAMPIRE_MAX_LOOT = 50;
 
 export const DRAGON_HEALTH_POINTS = 250;
 export const DRAGON_MIN_ATTACK = 15;

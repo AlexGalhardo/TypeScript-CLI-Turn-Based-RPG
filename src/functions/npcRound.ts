@@ -2,6 +2,7 @@
 
 import Character from "../classes/Character";
 import GameStatistics from "../classes/GameStatistics";
+import { HEALTH_POTION_PRICE, MANA_POTION_PRICE } from "../GLOBAL";
 import { userInput } from "../main";
 
 export default function npcRound(player: Character) {
@@ -33,7 +34,7 @@ export default function npcRound(player: Character) {
 
                 GameStatistics.totalHealthPotionsBought += healthPotions;
 
-                totalPrice = healthPotions * 50;
+                totalPrice = healthPotions * HEALTH_POTION_PRICE;
 
                 console.log(`\t Confirm: [${healthPotions}] Health Potions for [${totalPrice}] Gold Coins?`);
 
@@ -68,7 +69,7 @@ export default function npcRound(player: Character) {
 
                 GameStatistics.totalManaPotionsBought += manaPotions;
 
-                totalPrice = manaPotions * 50;
+                totalPrice = manaPotions * MANA_POTION_PRICE;
 
                 console.log(`\t Confirm: ${manaPotions} for ${totalPrice} gold coins?`);
                 console.log("\t Enter [1] --> Yes");
@@ -90,10 +91,12 @@ export default function npcRound(player: Character) {
                         break;
                     }
                 }
-            } else if (npcOption === 0) {
+            }
+            else if (npcOption === 0) {
                 continueNPC = false;
                 break;
-            } else {
+            }
+            else {
                 console.log("\t Enter a valid option!");
                 break;
             }

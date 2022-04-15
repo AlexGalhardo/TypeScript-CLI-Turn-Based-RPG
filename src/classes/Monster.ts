@@ -1,25 +1,31 @@
 /* eslint-disable prettier/prettier */
+import LivingBeing from './LivingBeing';
 
-export default class Monster {
+interface IMonster {
+    experienceForKill: number;
+    minLoot: number;
+    maxLoot: number;
+    lootAfterKill: number;
+    printMonsterRoundStatus(): void;
+    takeDamage(playerDamage: number): void;
+}
+export default abstract class Monster extends LivingBeing implements IMonster {
     constructor(
-        public name: string,
-        public lifePoints: number,
-        public minAttack: number,
-        public maxAttack: number,
+        name: string,
+        lifePoints: number,
+        minAttack: number,
+        maxAttack: number,
         public experienceForKill: number,
-        public mintLoot: number,
+        public minLoot: number,
         public maxLoot: number,
         public lootAfterKill: number = 0
     ) {
-        this.lifePoints = lifePoints;
-        this.minAttack = minAttack;
-        this.maxAttack = maxAttack;
-        this.name = name;
+        super(name, lifePoints, minAttack, maxAttack);
         this.experienceForKill = experienceForKill;
-        this.lootAfterKill = Math.floor(Math.random() * maxLoot) + mintLoot;
+        this.lootAfterKill = Math.floor(Math.random() * maxLoot) + minLoot;
     }
 
-    printMonsterRoundStatus() {
+    printMonsterRoundStatus(): void {
         console.log("\n\t --- MONSTER STATUS ---");
         console.log(`\t Name: ${this.name}`);
         console.log(`\t Life: ${this.lifePoints}`);
@@ -28,13 +34,5 @@ export default class Monster {
     takeDamage(playerDamage: number): void {
         this.lifePoints -= playerDamage;
         console.log(`\t Player Damage: ${playerDamage}`);
-    }
-
-    isDead() {
-        return this.lifePoints <= 0;
-    }
-
-    attack(): number {
-        return Math.floor(Math.random() * this.maxAttack) + this.minAttack;
     }
 }
