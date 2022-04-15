@@ -11,4 +11,5 @@ export default class GameStatistics {
     static totalDamageDealtToMonsters = 0;
     static totalHealthPotionsBought = 0;
     static totalDamageTakenFromMonsters = 0;
+    static totalManaPotionsBought = 0;
 }

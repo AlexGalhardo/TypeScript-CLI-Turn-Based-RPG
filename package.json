@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node-dev src/main.ts"
+    "start:game": "ts-node-dev src/main.ts"
   },
   "keywords": [],
   "author": "",

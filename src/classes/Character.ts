@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { userInput } from "../game";
+import { userInput } from "../main";
 import GameStatistics from "./GameStatistics";
 
 export default class Character {
@@ -16,14 +16,14 @@ export default class Character {
 
     constructor(
         public vocation: string,
-        public playerName: string,
+        public name: string,
         public minAttack: number,
         public maxAttack: number,
         public healthPointsPerLevel: number,
         public manaPointsPerLevel: number
     ) {
         this.vocation = vocation;
-        this.playerName = playerName;
+        this.name = name;
 
         this.currentlyLevel = 0;
         this.currentlyEXP = 0;
@@ -47,7 +47,7 @@ export default class Character {
         this.currentlyGoldCoins = 0;
     }
 
-    getCharacterRoundStatus() {
+    printCharacterRoundStatus() {
         console.log("\n\t --- PLAYER STATUS ---");
         console.log(`\t Life: ${this.currentlyHealthPoints}`);
         console.log(`\t Mana: ${this.currentlyManaPoints}`);
@@ -127,5 +127,13 @@ export default class Character {
     usedGoldCoinsInNPC(usedGoldCoinsInNPC: number): void {
         GameStatistics.totalGoldCoinsUsed += usedGoldCoinsInNPC;
         this.currentlyGoldCoins -= usedGoldCoinsInNPC;
+    }
+
+    addHealthPotions(healthPotions: number) {
+        this.currentlyHealthPoints += healthPotions
+    }
+
+    addManaPotions(manaPotions: number) {
+        this.currentlyManaPoints += manaPotions
     }
 }
