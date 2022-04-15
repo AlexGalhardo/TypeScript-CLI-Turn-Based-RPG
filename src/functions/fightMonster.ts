@@ -3,27 +3,28 @@
 import Character from "../classes/Character";
 import GameStatistics from "../classes/GameStatistics";
 import Monster from "../classes/Monster";
+import playerAction from "./playerAction";
 
 export default function fightMonster(player: Character, monster: Monster) {
     while (true) {
         player.printCharacterRoundStatus();
         monster.printMonsterRoundStatus();
 
-        playerAction = playerAction(player);
+        const playerActionOption: number = playerAction(player);
 
-        printRoundStatus();
+        console.log('\n\t -------- ROUND STATUS --------')
 
-        if (playerAction === 0) {
-            continue;
+        if (playerActionOption === 0) {
+            continue
         } else {
-            if (playerAction === 1) {
+            if (playerActionOption === 1) {
                 GameStatistics.totalNormalAttacksUsed += 1;
                 const damageToMonster = player.attack();
                 GameStatistics.totalDamageDealtToMonsters += damageToMonster;
                 monster.takeDamage(damageToMonster);
-            } else if (playerAction === 2) {
+            } else if (playerActionOption === 2) {
                 player.useHealthPotion();
-            } else if (playerAction === 3) {
+            } else if (playerActionOption === 3) {
                 player.useManaPotion();
             }
 

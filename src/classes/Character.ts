@@ -6,9 +6,9 @@ export default class Character {
     public currentlyLevel: number;
     public currentlyEXP: number;
     public expToNextLevel: number;
-    public maxHealthPoints: number;
+    public maxLifePoints: number;
     public maxManaPoints: number;
-    public currentlyHealthPoints: number;
+    public currentlyLifePoints: number;
     public currentlyManaPoints: number;
     public currentlyHealthPotions: number;
     public currentlyManaPotions: number;
@@ -19,7 +19,7 @@ export default class Character {
         public name: string,
         public minAttack: number,
         public maxAttack: number,
-        public healthPointsPerLevel: number,
+        public LifePointsPerLevel: number,
         public manaPointsPerLevel: number
     ) {
         this.vocation = vocation;
@@ -29,16 +29,16 @@ export default class Character {
         this.currentlyEXP = 0;
         this.expToNextLevel = 100;
 
-        this.maxHealthPoints = 1000;
+        this.maxLifePoints = 1000;
         this.maxManaPoints = 100;
 
         this.minAttack = minAttack;
         this.maxAttack = maxAttack;
 
-        this.currentlyHealthPoints = 100;
+        this.currentlyLifePoints = 1000;
         this.currentlyManaPoints = 100;
 
-        this.healthPointsPerLevel = healthPointsPerLevel;
+        this.LifePointsPerLevel = LifePointsPerLevel;
         this.manaPointsPerLevel = manaPointsPerLevel;
 
         this.currentlyHealthPotions = 0;
@@ -49,14 +49,14 @@ export default class Character {
 
     printCharacterRoundStatus() {
         console.log("\n\t --- PLAYER STATUS ---");
-        console.log(`\t Life: ${this.currentlyHealthPoints}`);
+        console.log(`\t Life: ${this.currentlyLifePoints}`);
         console.log(`\t Mana: ${this.currentlyManaPoints}`);
-        console.log(`\t Health Potions: ${this.currentlyHealthPoints}`);
+        console.log(`\t Health Potions: ${this.currentlyHealthPotions}`);
         console.log(`\t Mana Potions: ${this.currentlyManaPotions}`);
     }
 
     isDead() {
-        return this.currentlyHealthPoints <= 0;
+        return this.currentlyLifePoints <= 0;
     }
 
     attack() {
@@ -65,7 +65,7 @@ export default class Character {
 
     useHealthPotion() {
         while (true) {
-            console.log(`\n\t You currently have: ${this.currentlyHealthPoints} health potions`);
+            console.log(`\n\t You currently have: ${this.currentlyHealthPotions} health potions`);
             console.log(`\t Enter 0 to stop use health potions`);
             let healthPotionsToUse = Number(userInput("\t How many Health Potions you want to use: "));
             if (healthPotionsToUse === 0) break;
@@ -74,7 +74,7 @@ export default class Character {
                 console.log("\n");
                 while (healthPotionsToUse !== 0) {
                     const healthCure = Math.floor(Math.random() * 125) + 75;
-                    this.currentlyHealthPoints += healthCure;
+                    this.currentlyLifePoints += healthCure;
                     this.currentlyHealthPotions -= 1;
                     console.log(`\t You healed ${healthCure} points of life!`);
                     healthPotionsToUse -= 1;
@@ -111,7 +111,7 @@ export default class Character {
 
     takeDamage(monsterDamage: number): void {
         GameStatistics.totalDamageTakenFromMonsters += monsterDamage;
-        this.currentlyHealthPoints -= monsterDamage;
+        this.currentlyLifePoints -= monsterDamage;
         console.log(`\t Monster Damage: ${monsterDamage}`);
     }
 
@@ -130,7 +130,7 @@ export default class Character {
     }
 
     addHealthPotions(healthPotions: number) {
-        this.currentlyHealthPoints += healthPotions
+        this.currentlyHealthPotions += healthPotions
     }
 
     addManaPotions(manaPotions: number) {

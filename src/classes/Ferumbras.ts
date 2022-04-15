@@ -5,7 +5,7 @@ import Monster from "./Monster";
 export default class Ferumbras extends Monster {
     constructor() {
         super(
-            "Dragon",
+            "Ferumbras",
             FERUMBRAS_HEALTH_POINTS,
             FERUMBRAS_MIN_ATTACK,
             FERUMBRAS_MAX_ATTACK,

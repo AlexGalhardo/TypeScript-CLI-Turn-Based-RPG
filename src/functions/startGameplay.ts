@@ -8,23 +8,24 @@ import roundAgainstMonster from "./roundAgainstMonster";
 
 export default function startGameplay(player: Character) {
 
-    let playerAlive = true;
+    let playerStillAlive = true;
 
     npcRound(player);
 
     console.log('\n\t --------> FIGHT ROUND <--------')
 
-    while (playerAlive) {
-        playerAlive = roundAgainstMonster(playerAlive, player, new Orc());
-        if (playerAlive) {
-            playerAlive = roundAgainstMonster(playerAlive, player, new Dragon());
-            if (playerAlive) {
-                playerAlive = roundAgainstMonster(playerAlive, player, new Ferumbras());
-            } else {
-                break;
+    while (playerStillAlive) {
+        playerStillAlive = roundAgainstMonster(player, new Orc());
+        if (playerStillAlive) {
+            playerStillAlive = roundAgainstMonster(player, new Dragon());
+            if (playerStillAlive) {
+                playerStillAlive = roundAgainstMonster(player, new Ferumbras());
+                if (playerStillAlive) {
+                    console.log("\n\n\t ... CONGRATULATIONS ...");
+                    console.log("\n\n\t ... YOU WON! ...\n\n");
+                    break;
+                }
             }
-        } else {
-            break;
         }
     }
 }

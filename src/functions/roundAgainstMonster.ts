@@ -4,7 +4,7 @@ import Monster from "../classes/Monster";
 import afterFight from "./afterFight";
 import fightMonster from "./fightMonster";
 
-export default function roundAgainstMonster(playerAlive: boolean, player: Character, monster: Monster): boolean {
+export default function roundAgainstMonster(player: Character, monster: Monster): boolean {
 
     while (true) {
 

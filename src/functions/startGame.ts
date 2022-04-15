@@ -10,7 +10,9 @@ export default async function startGame() {
     gameIntroduction();
 
     while (true) {
+
         console.log("\n");
+
         const player = createPlayerCharacter();
 
         startGameplay(player);

@@ -3,7 +3,7 @@
 export default class Monster {
     constructor(
         public name: string,
-        public healthPoints: number,
+        public lifePoints: number,
         public minAttack: number,
         public maxAttack: number,
         public experienceForKill: number,
@@ -11,7 +11,7 @@ export default class Monster {
         public maxLoot: number,
         public lootAfterKill: number = 0
     ) {
-        this.healthPoints = healthPoints;
+        this.lifePoints = lifePoints;
         this.minAttack = minAttack;
         this.maxAttack = maxAttack;
         this.name = name;
@@ -19,18 +19,22 @@ export default class Monster {
         this.lootAfterKill = Math.floor(Math.random() * maxLoot) + mintLoot;
     }
 
+    printMonsterRoundStatus() {
+        console.log("\n\t --- MONSTER STATUS ---");
+        console.log(`\t Name: ${this.name}`);
+        console.log(`\t Life: ${this.lifePoints}`);
+    }
+
     takeDamage(playerDamage: number): void {
-        this.healthPoints -= playerDamage;
+        this.lifePoints -= playerDamage;
         console.log(`\t Player Damage: ${playerDamage}`);
     }
 
     isDead() {
-        return this.healthPoints <= 0;
+        return this.lifePoints <= 0;
     }
 
     attack(): number {
         return Math.floor(Math.random() * this.maxAttack) + this.minAttack;
     }
-
-    printMonsterRoundStatus(): void { }
 }

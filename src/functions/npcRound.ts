@@ -29,7 +29,7 @@ export default function npcRound(player: Character) {
 
                 const healthPotions = Number(userInput("\t I want to buy: "));
 
-                if (healthPotions == 0) break;
+                if (healthPotions === 0) break;
 
                 GameStatistics.totalHealthPotionsBought += healthPotions;
 
@@ -49,11 +49,11 @@ export default function npcRound(player: Character) {
                         player.usedGoldCoinsInNPC(totalPrice);
                         player.addHealthPotions(healthPotions);
 
-                        console.log(`\t Currently Cold Coins: ${player.currentlyGoldCoins}`);
+                        console.log(`\n\t Currently Cold Coins: ${player.currentlyGoldCoins}`);
                         console.log(`\t Currently Health Potions: ${player.currentlyHealthPotions}`);
                         break;
                     } else {
-                        console.log("\n\t YOU DONT HAVE SUFFICIENT GOLD COINS!");
+                        console.log("\n\t YOU DONT HAVE SUFFICIENT GOLD COINS TO MAKE THIS PURCHASE!");
                         break;
                     }
                 }
