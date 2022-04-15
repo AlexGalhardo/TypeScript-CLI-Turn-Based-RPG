@@ -1,0 +1,11 @@
+export const PLAYER_MIN_ATTACK = 20;
+export const PLAYER_MAX_ATTACK = 100;
+
+export const WARRIOR_ADD_HEALTH_PER_LEVEL = 75;
+export const WARRIOR_ADD_MANA_PER_LEVEL = 75;
+
+export const MAGE_ADD_HEALTH_PER_LEVEL = 25;
+export const MAGE_ADD_MANA_PER_LEVEL = 75;
+
+export const ARCHER_ADD_HEALTH_PER_LEVEL = 50;
+export const ARCHER_ADD_MANA_PER_LEVEL = 50;
