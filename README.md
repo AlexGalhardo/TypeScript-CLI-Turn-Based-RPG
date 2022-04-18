@@ -8,13 +8,14 @@
 ## How To Use This Program (Play The Game)
   - $ git clone https://github.com/AlexGalhardo/TypeScript-CLI-RPG.git
   - $ cd TypeScript-CLI-RPG
+  - $ npm install
   - $ npm run start:game
+  - Have fun :D
 
 ## Tools I Used
 - Linux Mint XFCE 20.03 Una
 - TypeScript 4.6
 - Node 16.x and Npm 8.x
-- Deno 1.x
 - VSCode
 - A lot of documentation, stackoverflow, youtube and try/error
 
