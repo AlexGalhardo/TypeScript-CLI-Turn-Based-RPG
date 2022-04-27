@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import Character from "../classes/Character";
 import Monster from "../classes/Monster";
 import afterFight from "./afterFight";
@@ -6,7 +5,6 @@ import fightMonster from "./fightMonster";
 
 export default function roundAgainstMonster(player: Character, monster: Monster): boolean {
 
-    // eslint-disable-next-line no-unreachable-loop
     while (true) {
 
         const playerStillAlive: boolean = fightMonster(player, monster);
@@ -21,7 +19,7 @@ export default function roundAgainstMonster(player: Character, monster: Monster)
     }
 
     if (monster?.type !== 'BOSS') {
-        afterFight(player);
+        afterFight(player, monster.name);
     }
 
     return true;

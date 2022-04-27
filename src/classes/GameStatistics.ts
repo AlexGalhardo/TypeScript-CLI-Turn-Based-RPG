@@ -1,5 +1,3 @@
-/* eslint-disable prettier/prettier */
-
 export default class GameStatistics {
     static totalGoldCoinsLooted = 0;
     static totalGoldCoinsUsed = 0;

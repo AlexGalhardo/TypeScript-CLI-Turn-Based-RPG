@@ -1,5 +1,3 @@
-/* eslint-disable prettier/prettier */
-
 import Character from "../classes/Character";
 import GameStatistics from "../classes/GameStatistics";
 import Monster from "../classes/Monster";

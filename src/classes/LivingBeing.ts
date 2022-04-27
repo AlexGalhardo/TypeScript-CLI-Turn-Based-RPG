@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 export interface ILivingBeing {
     name: string;
     lifePoints: number;

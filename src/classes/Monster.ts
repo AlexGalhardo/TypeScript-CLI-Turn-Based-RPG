@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import LivingBeing from './LivingBeing';
 
 interface IMonster {

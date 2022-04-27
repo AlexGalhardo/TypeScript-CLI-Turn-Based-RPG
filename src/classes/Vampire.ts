@@ -1,4 +1,4 @@
-/* eslint-disable prettier/prettier */
+
 import { VAMPIRE_HEALTH_POINTS, VAMPIRE_MIN_ATTACK, VAMPIRE_MAX_ATTACK, VAMPIRE_EXPERIENCE_FOR_KILL, VAMPIRE_MIN_LOOT, VAMPIRE_MAX_LOOT } from "../GLOBAL";
 import Monster from "./Monster";
 

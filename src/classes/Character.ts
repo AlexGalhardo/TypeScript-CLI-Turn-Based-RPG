@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { PLAYER_MAX_ATTACK, PLAYER_MIN_ATTACK, PLAYER_START_LIFE_POINTS, PLAYER_START_MANA_POINTS } from "../GLOBAL";
 import { userInput } from "../main";
 import GameStatistics from "./GameStatistics";

@@ -1,5 +1,3 @@
-/* eslint-disable prettier/prettier */
-
 import Character from "../classes/Character";
 import GameStatistics from "../classes/GameStatistics";
 import { HEALTH_POTION_PRICE, MANA_POTION_PRICE } from "../GLOBAL";

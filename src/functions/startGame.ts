@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { userInput } from "../main";
 import createPlayerCharacter from "./createPlayerCharacter";
 import gameIntroduction from "./gameIntroduction";

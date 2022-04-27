@@ -1,9 +1,9 @@
-/* eslint-disable prettier/prettier */
+
 import Character from "../classes/Character";
 import npcRound from "./npcRound";
 
-export default function afterFight(player: Character) {
-    console.log('\n\n\t ....Player Defeated the Monster!\n\n')
+export default function afterFight(player: Character, monsterName: string) {
+    console.log(`\n\n\t ....Player Defeated ${monsterName}!\n`)
     npcRound(player);
     console.log('\n\t --------> FIGHT ROUND <--------')
 }
