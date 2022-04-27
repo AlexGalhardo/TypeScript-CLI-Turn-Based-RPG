@@ -14,7 +14,7 @@
   },
   "scripts": {
     "dev": "ts-node-dev src/main.ts",
-    "build": "tsc -p .",
+    "build": "tsc --project ./",
     "start:game": "node dist/main.js"
   },
   "keywords": [

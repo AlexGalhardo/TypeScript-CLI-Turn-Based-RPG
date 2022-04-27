@@ -172,7 +172,7 @@ export default abstract class Character extends LivingBeing implements ICharacte
         while (true) {
 
             console.log(`\n\t You currently have: ${this.currentlyManaPotions} mana potions`);
-            console.log("\t Enter 0 to STOP use mana potions");
+            console.log("\t Enter 0 to STOP using mana potions");
 
             let manaPotionsToUse = Number(userInput("\t How many Mana Potions you want to use: "));
 
