@@ -4,7 +4,7 @@ import chalk from 'chalk';
 
 export default function playerAction(player: Character) {
     while (true) {
-        console.log(chalk.bold('\n\t @@ Player Round @@'))
+        console.log(chalk.bold('\n\t --- PLAYER ROUND ---'))
         console.log('\t Enter [1] --> Normal Attack')
         console.log('\t Enter [2] --> Use Health Potion')
         console.log('\t Enter [3] --> Use Mana Potion')

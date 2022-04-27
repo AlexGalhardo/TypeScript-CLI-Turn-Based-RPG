@@ -2,6 +2,7 @@ import Character from "../classes/Character";
 import GameStatistics from "../classes/GameStatistics";
 import { HEALTH_POTION_PRICE, MANA_POTION_PRICE } from "../GLOBAL";
 import { userInput } from "../main";
+import chalk from 'chalk';
 
 export default function npcRound(player: Character) {
 
@@ -11,7 +12,7 @@ export default function npcRound(player: Character) {
 
     while (continueNPC) {
 
-        console.log("\n\t ---> NPC ROUND <--- ");
+        console.log(chalk.bold("\n\t ---> NPC ROUND <--- "));
         console.log(`\t Currently Gold Coins: ${player.currentlyGoldCoins}`);
         console.log("\t Enter [1] --> Buy Health Potions [50 gold coins EACH]");
         console.log("\t Enter [2] --> Buy Mana Potions [50 gold coins EACH]");
@@ -45,6 +46,7 @@ export default function npcRound(player: Character) {
 
                     if (totalPrice <= player.currentlyGoldCoins) {
 
+                        GameStatistics.totalGoldCoinsUsed += totalPrice;
                         player.usedGoldCoinsInNPC(totalPrice);
                         player.addHealthPotions(healthPotions);
 
@@ -52,7 +54,7 @@ export default function npcRound(player: Character) {
                         console.log(`\t Currently Health Potions: ${player.currentlyHealthPotions}`);
                         break;
                     } else {
-                        console.log("\n\t YOU DONT HAVE SUFFICIENT GOLD COINS TO MAKE THIS PURCHASE!");
+                        console.log("\n\t YOU DONT HAVE SUFFICIENT GOLD COINS!");
                         break;
                     }
                 }
@@ -78,6 +80,7 @@ export default function npcRound(player: Character) {
 
                     if (totalPrice <= player.currentlyGoldCoins) {
 
+                        GameStatistics.totalGoldCoinsUsed += totalPrice;
                         player.usedGoldCoinsInNPC(totalPrice);
                         player.addManaPotions(manaPotions);
 

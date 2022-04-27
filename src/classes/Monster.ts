@@ -1,13 +1,13 @@
 import LivingBeing from './LivingBeing';
-
+import chalk from 'chalk';
 interface IMonster {
     experienceForKill: number;
     minLoot: number;
     maxLoot: number;
-    lootAfterKill: number;
     type?: string;
     printMonsterRoundStatus(): void;
     takeDamage(playerDamage: number): void;
+    lootAfterKill(): number;
 }
 export default abstract class Monster extends LivingBeing implements IMonster {
     constructor(
@@ -18,17 +18,15 @@ export default abstract class Monster extends LivingBeing implements IMonster {
         public experienceForKill: number,
         public minLoot: number,
         public maxLoot: number,
-        public lootAfterKill: number = 0,
-        public type?: string | undefined,
+        public type?: string,
     ) {
         super(name, lifePoints, minAttack, maxAttack);
         this.experienceForKill = experienceForKill;
-        this.lootAfterKill = Math.floor(Math.random() * maxLoot) + minLoot;
-        this.type = type;
+        this.type = type ?? 'normal';
     }
 
     printMonsterRoundStatus(): void {
-        console.log("\n\t --- MONSTER STATUS ---");
+        console.log(chalk.bold("\n\t --- MONSTER STATUS ---"));
         console.log(`\t Name: ${this.name}`);
         console.log(`\t Life: ${this.lifePoints}`);
     }
@@ -36,5 +34,9 @@ export default abstract class Monster extends LivingBeing implements IMonster {
     takeDamage(playerDamage: number): void {
         this.lifePoints -= playerDamage;
         console.log(`\t Player Damage: ${playerDamage}`);
+    }
+
+    lootAfterKill(): number {
+        return Math.floor(Math.random() * this.maxLoot) + this.minLoot;
     }
 }
