@@ -41,7 +41,6 @@ export default function fightMonster(player: Character, monster: Monster): boole
             }
             if (monster.isDead()) {
                 const lootFromMonster = monster.lootAfterKill();
-                GameStatistics.totalGoldCoinsLooted += lootFromMonster;
                 player.getLootMonster(lootFromMonster);
 
                 player.getMonsterExperience(monster.experienceForKill);

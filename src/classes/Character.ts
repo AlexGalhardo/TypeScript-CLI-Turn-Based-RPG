@@ -82,7 +82,7 @@ export default abstract class Character extends LivingBeing implements ICharacte
 
     printCharacterRoundStatus() {
         console.log(chalk.bold("\n\t --- PLAYER STATUS ---"));
-        console.log(`\t Life: ${this.lifePoints}`);
+        console.log(chalk.bold.red(`\t Life: ${this.lifePoints}`));
         console.log(`\t Mana: ${this.manaPoints}`);
         console.log(`\t Health Potions: ${this.currentlyHealthPotions}`);
         console.log(`\t Mana Potions: ${this.currentlyManaPotions}`);
@@ -115,7 +115,7 @@ export default abstract class Character extends LivingBeing implements ICharacte
     }
 
     addManaPotions(manaPotions: number): void {
-        this.manaPoints += manaPotions
+        this.currentlyManaPotions += manaPotions
     }
 
     regenerateEachRound(): void {
@@ -189,7 +189,7 @@ export default abstract class Character extends LivingBeing implements ICharacte
                     this.manaPoints += manaCure;
                     if (this.manaPoints > this.maxManaPoints) this.manaPoints = this.maxManaPoints;
                     this.currentlyManaPotions -= 1;
-                    console.log(`\t You healed ${manaCure} points of life!`);
+                    console.log(`\t You healed ${manaCure} points of mana!`);
                     manaPotionsToUse -= 1;
                 }
             }

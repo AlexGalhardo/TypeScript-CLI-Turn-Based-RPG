@@ -6,7 +6,14 @@ import { userInput } from "../main";
 import chalk from 'chalk';
 
 export default function createPlayerCharacter(): Character {
-    const playerName = String(userInput(chalk.bold.green("\t Enter your character name: ")));
+
+    let playerName = String(userInput(chalk.bold.green("\t Enter your character name [only string between 4-10 characters]: ")));
+
+    const regexCharacterNameIsValid = /^[a-zA-Z]+$/;
+
+    while (typeof playerName !== 'string' || !regexCharacterNameIsValid.test(playerName) || playerName.length < 4 || playerName.length > 10) {
+        playerName = String(userInput(chalk.bold.green("\t Enter your character name [only string between 4-10 characters]: ")));
+    }
 
     console.log("\n\n\t These are the vocations you can choose to play: ");
     console.log("\n\t Enter [1] --> Warrior");

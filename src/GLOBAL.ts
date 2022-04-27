@@ -6,9 +6,9 @@ export const ADD_PLAYER_ATTACK_PER_LEVEL = 20;
 // index 1 = level 1
 // index 2 = need 100 exp to level up to level 2
 // index 3 = need 200 exp to level up to level 3
-export const expToLevelUp = [0, 0, 100, 200, 300, 400, 500];
+export const expToLevelUp = [0, 0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
 
-export const PLAYER_START_LIFE_POINTS = 1000;
+export const PLAYER_START_LIFE_POINTS = 5000;
 export const PLAYER_START_MANA_POINTS = 100;
 
 export const WARRIOR_ADD_HEALTH_PER_LEVEL = 75;

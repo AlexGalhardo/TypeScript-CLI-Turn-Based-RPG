@@ -18,16 +18,16 @@ export default async function startGame() {
 
         startGameplay(player);
 
-        console.log(chalk.bold.black('\n\t -------- GAME STATISTICS --------'));
-        console.log(`\n\t totalGoldCoinsLooted = ${GameStatistics.totalGoldCoinsLooted}`);
-        console.log(`\n\t totalGoldCoinsUsed = ${GameStatistics.totalGoldCoinsUsed}`);
-        console.log(`\n\t totalHealthPotionsBought = ${GameStatistics.totalHealthPotionsBought}`);
-        console.log(`\n\t totalManaPotionsBought = ${GameStatistics.totalManaPotionsBought}`);
-        console.log(`\n\t totalHealthPotionsUsed = ${GameStatistics.totalHealthPotionsUsed}`);
-        console.log(`\n\t totalManaPotionsUsed = ${GameStatistics.totalManaPotionsUsed}`);
-        console.log(`\n\t totalNormalAttacksUsed = ${GameStatistics.totalNormalAttacksUsed}`);
-        console.log(`\n\t totalDamageDealtToMonsters = ${GameStatistics.totalDamageDealtToMonsters}`);
-        console.log(`\n\t totalDamageTakenFromMonsters = ${GameStatistics.totalDamageTakenFromMonsters}`);
+        console.log(chalk.bold.yellow('\n\t -------- GAME STATISTICS --------'));
+        console.log(`\t Total Gold Coins Looted = ${GameStatistics.totalGoldCoinsLooted}`);
+        console.log(`\t Total Gold Coins Used = ${GameStatistics.totalGoldCoinsUsed}`);
+        console.log(`\t Total Health Potions Bought = ${GameStatistics.totalHealthPotionsBought}`);
+        console.log(`\t Total Mana Potions Bought = ${GameStatistics.totalManaPotionsBought}`);
+        console.log(`\t Total Health Potions Used = ${GameStatistics.totalHealthPotionsUsed}`);
+        console.log(`\t Total Mana Potions Used = ${GameStatistics.totalManaPotionsUsed}`);
+        console.log(`\t Total Normal Attack sUsed = ${GameStatistics.totalNormalAttacksUsed}`);
+        console.log(`\t Total Damage Dealt ToMonsters = ${GameStatistics.totalDamageDealtToMonsters}`);
+        console.log(`\t Total Damage Taken From Monsters = ${GameStatistics.totalDamageTakenFromMonsters}`);
 
         console.log("\n\n\t Do you wanna play again?");
         console.log("\t Enter [1] --> YES");
@@ -41,5 +41,5 @@ export default async function startGame() {
         }
     }
 
-    console.log("\n\n\t Bye Bye. Come Back Later! :D\n\n");
+    console.log(`\n\n\t Bye. Come Back Later! :D\n\n`);
 }

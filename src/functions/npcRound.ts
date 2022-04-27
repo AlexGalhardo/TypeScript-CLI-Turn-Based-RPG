@@ -13,10 +13,10 @@ export default function npcRound(player: Character) {
     while (continueNPC) {
 
         console.log(chalk.bold("\n\t ---> NPC ROUND <--- "));
-        console.log(`\t Currently Gold Coins: ${player.currentlyGoldCoins}`);
-        console.log("\t Enter [1] --> Buy Health Potions [50 gold coins EACH]");
-        console.log("\t Enter [2] --> Buy Mana Potions [50 gold coins EACH]");
-        console.log("\t Enter [0] --> ByeBye NPC [NEXT ROUND]");
+        console.log(chalk.bold.yellow(`\t Currently Gold Coins: ${player.currentlyGoldCoins}`));
+        console.log(`\t Enter [1] --> Buy Health Potions [${HEALTH_POTION_PRICE} gold coins each]`);
+        console.log(`\t Enter [2] --> Buy Mana Potions [${MANA_POTION_PRICE} gold coins each]`);
+        console.log("\t Enter [0] --> Bye NPC [Go Next Round]");
 
         const npcOption = Number(userInput("\t Option: "));
 
@@ -31,8 +31,6 @@ export default function npcRound(player: Character) {
 
                 if (healthPotions === 0) break;
 
-                GameStatistics.totalHealthPotionsBought += healthPotions;
-
                 totalPrice = healthPotions * HEALTH_POTION_PRICE;
 
                 console.log(`\t Confirm: [${healthPotions}] Health Potions for [${totalPrice}] Gold Coins?`);
@@ -45,8 +43,7 @@ export default function npcRound(player: Character) {
                 if (confirm === 1) {
 
                     if (totalPrice <= player.currentlyGoldCoins) {
-
-                        GameStatistics.totalGoldCoinsUsed += totalPrice;
+                        GameStatistics.totalHealthPotionsBought += healthPotions;
                         player.usedGoldCoinsInNPC(totalPrice);
                         player.addHealthPotions(healthPotions);
 
@@ -67,8 +64,6 @@ export default function npcRound(player: Character) {
 
                 if (manaPotions === 0) break;
 
-                GameStatistics.totalManaPotionsBought += manaPotions;
-
                 totalPrice = manaPotions * MANA_POTION_PRICE;
 
                 console.log(`\t Confirm: ${manaPotions} for ${totalPrice} gold coins?`);
@@ -79,8 +74,7 @@ export default function npcRound(player: Character) {
                 if (confirmTransaction === 1) {
 
                     if (totalPrice <= player.currentlyGoldCoins) {
-
-                        GameStatistics.totalGoldCoinsUsed += totalPrice;
+                        GameStatistics.totalManaPotionsBought += manaPotions;
                         player.usedGoldCoinsInNPC(totalPrice);
                         player.addManaPotions(manaPotions);
 
