@@ -17,6 +17,7 @@ const main_1 = require("../main");
 const createPlayerCharacter_1 = __importDefault(require("./createPlayerCharacter"));
 const gameIntroduction_1 = __importDefault(require("./gameIntroduction"));
 const startGameplay_1 = __importDefault(require("./startGameplay"));
+const chooseGameMode_1 = __importDefault(require("./chooseGameMode"));
 const chalk_1 = __importDefault(require("chalk"));
 function startGame() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -24,6 +25,7 @@ function startGame() {
         while (true) {
             console.log("\n");
             const player = (0, createPlayerCharacter_1.default)();
+            (0, chooseGameMode_1.default)();
             (0, startGameplay_1.default)(player);
             console.log(chalk_1.default.bold.yellow('\n\t -------- GAME STATISTICS --------'));
             console.log(`\t Total Gold Coins Looted = ${GameStatistics_1.default.totalGoldCoinsLooted}`);

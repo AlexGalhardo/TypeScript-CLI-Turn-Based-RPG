@@ -9,37 +9,36 @@ const main_1 = require("../main");
 const chalk_1 = __importDefault(require("chalk"));
 function npcRound(player) {
     let totalPrice = 0;
-    let continueNPC = true;
-    while (continueNPC) {
+    let continueInNPCRound = true;
+    while (continueInNPCRound) {
         console.log(chalk_1.default.bold("\n\t ---> NPC ROUND <--- "));
         console.log(chalk_1.default.bold.yellow(`\t Currently Gold Coins: ${player.currentlyGoldCoins}`));
         console.log(`\t Enter [1] --> Buy Health Potions [${GLOBAL_1.HEALTH_POTION_PRICE} gold coins each]`);
         console.log(`\t Enter [2] --> Buy Mana Potions [${GLOBAL_1.MANA_POTION_PRICE} gold coins each]`);
         console.log("\t Enter [0] --> Bye NPC [Go Next Round]");
-        const npcOption = Number((0, main_1.userInput)("\t Option: "));
+        const npcOption = Number((0, main_1.userInput)(chalk_1.default.bold.green("\t Option: ")));
         while (true) {
             if (npcOption === 1) {
                 console.log(`\n\t How many Health Potions you want dear ${player.name} ?`);
                 console.log("\t Enter [0] --> Go back.");
-                const healthPotions = Number((0, main_1.userInput)("\t I want to buy: "));
+                const healthPotions = Number((0, main_1.userInput)(chalk_1.default.bold.green("\t I want to buy: ")));
                 if (healthPotions === 0)
                     break;
                 totalPrice = healthPotions * GLOBAL_1.HEALTH_POTION_PRICE;
-                console.log(`\t Confirm: [${healthPotions}] Health Potions for [${totalPrice}] Gold Coins?`);
+                console.log(chalk_1.default.bold(`\t Confirm: BUY ${healthPotions} Health Potions for ${totalPrice} gold coins?`));
                 console.log("\t Enter [1] --> Yes");
                 console.log("\t Enter Other --> No");
-                const confirm = Number((0, main_1.userInput)("\t Confirm: "));
-                if (confirm === 1) {
+                const confirmTransaction = Number((0, main_1.userInput)(chalk_1.default.bold.green("\t Confirm: ")));
+                if (confirmTransaction === 1) {
                     if (totalPrice <= player.currentlyGoldCoins) {
                         GameStatistics_1.default.totalHealthPotionsBought += healthPotions;
                         player.usedGoldCoinsInNPC(totalPrice);
                         player.addHealthPotions(healthPotions);
-                        console.log(`\n\t Currently Cold Coins: ${player.currentlyGoldCoins}`);
-                        console.log(`\t Currently Health Potions: ${player.currentlyHealthPotions}`);
+                        console.log(chalk_1.default.green(`\n\t You now have: ${player.currentlyHealthPotions} Health Potions!`));
                         break;
                     }
                     else {
-                        console.log("\n\t YOU DONT HAVE SUFFICIENT GOLD COINS!");
+                        console.log(chalk_1.default.bold.red("\n\t YOU DONT HAVE SUFFICIENT GOLD COINS!"));
                         break;
                     }
                 }
@@ -47,35 +46,33 @@ function npcRound(player) {
             else if (npcOption === 2) {
                 console.log(`\n\t How many Mana Potions you wanna ${player.name} ?`);
                 console.log("\t Enter [0] --> Go back.");
-                const manaPotions = Number((0, main_1.userInput)("\t I want to buy: "));
+                const manaPotions = Number((0, main_1.userInput)(chalk_1.default.bold.green("\t I want to buy: ")));
                 if (manaPotions === 0)
                     break;
                 totalPrice = manaPotions * GLOBAL_1.MANA_POTION_PRICE;
-                console.log(`\t Confirm: ${manaPotions} for ${totalPrice} gold coins?`);
+                console.log(chalk_1.default.bold(`\t Confirm: BUY ${manaPotions} Mana Potions for ${totalPrice} gold coins?`));
                 console.log("\t Enter [1] --> Yes");
                 console.log("\t Enter Other --> No");
-                const confirmTransaction = Number((0, main_1.userInput)("\t Confirm: "));
+                const confirmTransaction = Number((0, main_1.userInput)(chalk_1.default.bold.green("\t Confirm: ")));
                 if (confirmTransaction === 1) {
                     if (totalPrice <= player.currentlyGoldCoins) {
                         GameStatistics_1.default.totalManaPotionsBought += manaPotions;
                         player.usedGoldCoinsInNPC(totalPrice);
                         player.addManaPotions(manaPotions);
-                        console.log(`\t Currently Cold Coins: ${player.currentlyGoldCoins}`);
-                        console.log(`\t Currently Mana Potions: ${player.currentlyManaPotions}`);
+                        console.log(chalk_1.default.green(`\n\t You now have: ${player.currentlyManaPotions} Mana Potions!`));
                         break;
                     }
                     else {
-                        console.log("\n\t YOU DONT HAVE SUFFICIENT GOLD COINS!");
+                        console.log(chalk_1.default.bold.red("\n\t YOU DONT HAVE SUFFICIENT GOLD COINS!"));
                         break;
                     }
                 }
             }
             else if (npcOption === 0) {
-                continueNPC = false;
+                continueInNPCRound = false;
                 break;
             }
             else {
-                console.log("\t Enter a valid option!");
                 break;
             }
         }

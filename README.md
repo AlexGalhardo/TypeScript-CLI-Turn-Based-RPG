@@ -1,8 +1,7 @@
 <br>
 <h3 align="center">TypeScript CLI RPG 2.0</h3>
 
-![gameplay-main](https://user-images.githubusercontent.com/19540357/166070521-25439d89-014b-4c72-a103-46eabf9dd720.png)
-
+![gameplay-main](https://user-images.githubusercontent.com/19540357/166071131-9a046912-c159-44d2-9ccd-4e6de01bee16.png)
 ## Introduction
   - This is the refactored version of [Python CLI RPG](https://github.com/AlexGalhardo/Python-CLI-RPG) using TypeScript.
   - I created this project mostly to improve my logic, OOP and clean code skills, refactoring the previously project who was written with Python, and of course, to learn mostly TypeScript syntax.

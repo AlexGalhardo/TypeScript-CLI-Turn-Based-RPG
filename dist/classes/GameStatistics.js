@@ -12,3 +12,5 @@ GameStatistics.totalManaPotionsUsed = 0;
 GameStatistics.totalNormalAttacksUsed = 0;
 GameStatistics.totalDamageDealtToMonsters = 0;
 GameStatistics.totalDamageTakenFromMonsters = 0;
+GameStatistics.totalWeakMagicSpellsUsed = 0;
+GameStatistics.totalStrongMagicSpellsUsed = 0;

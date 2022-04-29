@@ -1,6 +1,0 @@
-- [ ] Add Spells Weak and Strong
-- [ ] Add Difficult modes EASY, NORMAL, HARD
-- [ ] Rebalance GLOBAL Stats
-- [x] Show Game Statistics at end of the Game
-- [x] Increment exp to level up
-- [x] Add regenerate life/mana each round

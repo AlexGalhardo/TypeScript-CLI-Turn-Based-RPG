@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const afterFight_1 = __importDefault(require("./afterFight"));
 const fightMonster_1 = __importDefault(require("./fightMonster"));
+const chalk_1 = __importDefault(require("chalk"));
 function roundAgainstMonster(player, monster) {
     while (true) {
         const playerStillAlive = (0, fightMonster_1.default)(player, monster);
@@ -12,8 +13,8 @@ function roundAgainstMonster(player, monster) {
             break;
         }
         else {
-            console.log("\n\n\t ... YOU ARE DEAD...");
-            console.log("\n\n\t ... GAME OVER ...\n\n");
+            console.log(chalk_1.default.bold.red("\n\n\t ... YOU ARE DEAD..."));
+            console.log(chalk_1.default.bold.red("\n\n\t ... GAME OVER ...\n\n"));
             return false;
         }
     }

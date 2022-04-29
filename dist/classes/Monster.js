@@ -5,9 +5,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const LivingBeing_1 = __importDefault(require("./LivingBeing"));
 const chalk_1 = __importDefault(require("chalk"));
+const chooseGameMode_1 = require("../functions/chooseGameMode");
 class Monster extends LivingBeing_1.default {
     constructor(name, lifePoints, minAttack, maxAttack, experienceForKill, minLoot, maxLoot, type) {
-        super(name, lifePoints, minAttack, maxAttack);
+        super(name, lifePoints * chooseGameMode_1.SELECTED_GAME_MODE, minAttack, maxAttack);
         this.experienceForKill = experienceForKill;
         this.minLoot = minLoot;
         this.maxLoot = maxLoot;
@@ -22,7 +23,7 @@ class Monster extends LivingBeing_1.default {
     }
     takeDamage(playerDamage) {
         this.lifePoints -= playerDamage;
-        console.log(`\t Player Damage: ${playerDamage}`);
+        console.log(`\t Player Damage To Monster: ${playerDamage}`);
     }
     lootAfterKill() {
         return Math.floor(Math.random() * this.maxLoot) + this.minLoot;

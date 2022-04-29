@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const GameStatistics_1 = __importDefault(require("../classes/GameStatistics"));
 const playerAction_1 = __importDefault(require("./playerAction"));
+const chooseGameMode_1 = require("./chooseGameMode");
 const chalk_1 = __importDefault(require("chalk"));
 function fightMonster(player, monster) {
     while (true) {
@@ -16,24 +17,38 @@ function fightMonster(player, monster) {
             continue;
         }
         else {
-            if (playerActionOption === 1) {
+            if (playerActionOption === 1) { // NORMAL ATTACK
                 GameStatistics_1.default.totalNormalAttacksUsed++;
                 ;
                 const damageToMonster = player.attack();
                 GameStatistics_1.default.totalDamageDealtToMonsters += damageToMonster;
+                console.log('\t Player Used Normal Attack');
                 monster.takeDamage(damageToMonster);
             }
-            else if (playerActionOption === 2) {
+            else if (playerActionOption === 2) { // USE HEALTH POTION
                 GameStatistics_1.default.totalHealthPotionsUsed++;
                 ;
                 player.useHealthPotion();
             }
-            else if (playerActionOption === 3) {
+            else if (playerActionOption === 3) { // USE MANA POTION
                 GameStatistics_1.default.totalManaPotionsUsed++;
-                ;
                 player.useManaPotion();
             }
-            const monsterDamage = monster.attack();
+            else if (playerActionOption === 4) { // USE WEAK MAGIC SPELL
+                GameStatistics_1.default.totalWeakMagicSpellsUsed++;
+                const damageToMonster = player.useWeakMagicSpell();
+                GameStatistics_1.default.totalDamageDealtToMonsters += damageToMonster;
+                console.log('\t Player Used Weak Magic Spell');
+                monster.takeDamage(damageToMonster);
+            }
+            else if (playerActionOption === 5) { // USE STRONG MAGIC SPELL
+                GameStatistics_1.default.totalStrongMagicSpellsUsed++;
+                const damageToMonster = player.useStrongMagicSpell();
+                GameStatistics_1.default.totalDamageDealtToMonsters += damageToMonster;
+                monster.takeDamage(damageToMonster);
+                console.log('\t Player Used Strong Magic Spell');
+            }
+            const monsterDamage = monster.attack() * chooseGameMode_1.SELECTED_GAME_MODE;
             GameStatistics_1.default.totalDamageTakenFromMonsters += monsterDamage;
             player.takeDamage(monsterDamage);
             player.regenerateEachRound();

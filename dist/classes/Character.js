@@ -23,11 +23,11 @@ class Character extends LivingBeing_1.default {
         this.name = name;
         this.currentlyLevel = 1;
         this.currentlyEXP = 0;
-        this.expToNextLevel = 100;
-        this.maxLifePoints = 1000;
-        this.maxManaPoints = 100;
-        this.minAttack = minAttack;
-        this.maxAttack = maxAttack;
+        this.expToNextLevel = GLOBAL_1.expToLevelUp[2];
+        this.maxLifePoints = GLOBAL_1.PLAYER_START_LIFE_POINTS;
+        this.maxManaPoints = GLOBAL_1.PLAYER_START_MANA_POINTS;
+        this.minMagicAttack = GLOBAL_1.PLAYER_MIN_MAGIC_ATTACK;
+        this.maxMagicAttack = GLOBAL_1.PLAYER_MAX_MAGIC_ATTACK;
         this.manaPoints = GLOBAL_1.PLAYER_START_MANA_POINTS;
         this.addLifePointsPerLevel = addLifePointsPerLevel;
         this.addManaPointsPerLevel = addManaPointsPerLevel;
@@ -39,8 +39,8 @@ class Character extends LivingBeing_1.default {
     }
     printCharacterRoundStatus() {
         console.log(chalk_1.default.bold("\n\t --- PLAYER STATUS ---"));
-        console.log(chalk_1.default.bold.red(`\t Life: ${this.lifePoints}`));
-        console.log(`\t Mana: ${this.manaPoints}`);
+        console.log(chalk_1.default.bold.red(`\t Life: ${this.lifePoints}`) + ` / ${this.maxLifePoints}`);
+        console.log(`\t Mana: ${this.manaPoints} / ${this.maxManaPoints}`);
         console.log(`\t Health Potions: ${this.currentlyHealthPotions}`);
         console.log(`\t Mana Potions: ${this.currentlyManaPotions}`);
         console.log(`\t Regenerated: ${this.regenerateLifePointsPerRound} points of life!`);
@@ -49,7 +49,7 @@ class Character extends LivingBeing_1.default {
     takeDamage(monsterDamage) {
         GameStatistics_1.default.totalDamageTakenFromMonsters += monsterDamage;
         this.lifePoints -= monsterDamage;
-        console.log(`\t Monster Damage: ${monsterDamage}`);
+        console.log(`\t Monster Damage To Player: ${monsterDamage}`);
     }
     getLootMonster(lootMonster) {
         GameStatistics_1.default.totalGoldCoinsLooted += lootMonster;
@@ -72,30 +72,56 @@ class Character extends LivingBeing_1.default {
         this.lifePoints += this.regenerateLifePointsPerRound;
         this.manaPoints += this.regenerateManaPointsPerRound;
     }
+    useWeakMagicSpell() {
+        this.manaPoints -= GLOBAL_1.PLAYER_WEAK_SPELL_MANA_COST;
+        return (Math.floor(Math.random() * this.maxMagicAttack) + this.minMagicAttack) * 1.25;
+    }
+    useStrongMagicSpell() {
+        this.manaPoints -= GLOBAL_1.PLAYER_STRONG_SPELL_MANA_COST;
+        return (Math.floor(Math.random() * this.maxMagicAttack) + this.minMagicAttack) * 2;
+    }
     verifyAndUpdateLevelStatus() {
         if (this.currentlyEXP >= this.expToNextLevel) {
             this.currentlyLevel++;
             this.expToNextLevel === GLOBAL_1.expToLevelUp[this.currentlyLevel];
             this.maxLifePoints += this.addLifePointsPerLevel;
             this.maxManaPoints += this.addManaPointsPerLevel;
-            this.minAttack += GLOBAL_1.ADD_PLAYER_ATTACK_PER_LEVEL;
-            this.maxAttack += GLOBAL_1.ADD_PLAYER_ATTACK_PER_LEVEL;
-            return true;
+            this.minAttack += this.vocation === "WARRIOR"
+                ? GLOBAL_1.ADD_WARRIOR_ATTACK_PER_LEVEL
+                : this.vocation === "ARCHER"
+                    ? GLOBAL_1.ADD_ARCHER_ATTACK_PER_LEVEL
+                    : GLOBAL_1.ADD_MAGE_ATTACK_PER_LEVEL;
+            this.maxAttack += this.vocation === "WARRIOR"
+                ? GLOBAL_1.ADD_WARRIOR_ATTACK_PER_LEVEL
+                : this.vocation === "ARCHER"
+                    ? GLOBAL_1.ADD_ARCHER_ATTACK_PER_LEVEL
+                    : GLOBAL_1.ADD_MAGE_ATTACK_PER_LEVEL;
+            this.minMagicAttack += this.vocation === "WARRIOR"
+                ? GLOBAL_1.ADD_WARRIOR_MAGIC_ATTACK_PER_LEVEL
+                : this.vocation === "ARCHER"
+                    ? GLOBAL_1.ADD_ARCHER_MAGIC_ATTACK_PER_LEVEL
+                    : GLOBAL_1.ADD_MAGE_MAGIC_ATTACK_PER_LEVEL;
+            this.maxMagicAttack += this.vocation === "WARRIOR"
+                ? GLOBAL_1.ADD_WARRIOR_MAGIC_ATTACK_PER_LEVEL
+                : this.vocation === "ARCHER"
+                    ? GLOBAL_1.ADD_ARCHER_MAGIC_ATTACK_PER_LEVEL
+                    : GLOBAL_1.ADD_MAGE_MAGIC_ATTACK_PER_LEVEL;
+            return true; // player level up?
         }
-        return false;
+        return false; // player level up?
     }
     useHealthPotion() {
         while (true) {
             console.log(`\n\t You currently have: ${this.currentlyHealthPotions} health potions`);
             console.log(`\t Enter 0 to stop using health potions`);
-            let healthPotionsToUse = Number((0, main_1.userInput)("\t How many Health Potions you want to use: "));
+            let healthPotionsToUse = Number((0, main_1.userInput)(chalk_1.default.bold.green("\t How many Health Potions you want to use: ")));
             if (healthPotionsToUse === 0)
                 break;
             else if (healthPotionsToUse <= this.currentlyHealthPotions) {
                 GameStatistics_1.default.totalHealthPotionsUsed += healthPotionsToUse;
                 console.log("\n");
                 while (healthPotionsToUse !== 0) {
-                    const healthCure = Math.floor(Math.random() * 125) + 75;
+                    const healthCure = Math.floor(Math.random() * GLOBAL_1.HEALTH_POTION_MAX_CURE) + GLOBAL_1.HEALTH_POTION_MIN_CURE;
                     this.lifePoints += healthCure;
                     if (this.lifePoints > this.maxLifePoints)
                         this.lifePoints = this.maxLifePoints;
@@ -113,14 +139,14 @@ class Character extends LivingBeing_1.default {
         while (true) {
             console.log(`\n\t You currently have: ${this.currentlyManaPotions} mana potions`);
             console.log("\t Enter 0 to STOP using mana potions");
-            let manaPotionsToUse = Number((0, main_1.userInput)("\t How many Mana Potions you want to use: "));
+            let manaPotionsToUse = Number((0, main_1.userInput)(chalk_1.default.bold.green("\t How many Mana Potions you want to use: ")));
             if (manaPotionsToUse === 0)
                 break;
             else if (manaPotionsToUse <= this.currentlyManaPotions) {
                 GameStatistics_1.default.totalManaPotionsUsed += manaPotionsToUse;
                 console.log("\n");
                 while (manaPotionsToUse !== 0) {
-                    const manaCure = Math.floor(Math.random() * 125) + 75;
+                    const manaCure = Math.floor(Math.random() * GLOBAL_1.MANA_POTION_MAX_CURE) + GLOBAL_1.MANA_POTION_MIN_CURE;
                     this.manaPoints += manaCure;
                     if (this.manaPoints > this.maxManaPoints)
                         this.manaPoints = this.maxManaPoints;

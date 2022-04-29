@@ -17,8 +17,8 @@ function startGameplay(player) {
     while (playerStillAlive) {
         playerStillAlive = (0, roundAgainstMonster_1.default)(player, monstersRounds.shift());
         if (playerStillAlive && monstersRounds.length === 0) {
-            console.log(chalk_1.default.bold.blue("\n\n\t !!!!!!!!!!!CONGRATULATIONS!!!!!!!!!!!\n\n"));
-            console.log(chalk_1.default.bold.blue(`\t !!!!!!!!!!!YOU WON THE GAME ${player.name}!!!!!!!!!!!\n\n`));
+            console.log(chalk_1.default.bold.blue("\n\n\t ..... CONGRATULATIONS .....\n\n"));
+            console.log(chalk_1.default.bold.blue(`\t ..... YOU WON THE GAME ${player.name} .....\n\n`));
             break;
         }
     }
