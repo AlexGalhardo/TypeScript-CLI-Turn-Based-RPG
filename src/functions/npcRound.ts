@@ -8,9 +8,9 @@ export default function npcRound(player: Character) {
 
     let totalPrice = 0;
 
-    let continueNPC = true;
+    let continueInNPCRound = true;
 
-    while (continueNPC) {
+    while (continueInNPCRound) {
 
         console.log(chalk.bold("\n\t ---> NPC ROUND <--- "));
         console.log(chalk.bold.yellow(`\t Currently Gold Coins: ${player.currentlyGoldCoins}`));
@@ -18,7 +18,7 @@ export default function npcRound(player: Character) {
         console.log(`\t Enter [2] --> Buy Mana Potions [${MANA_POTION_PRICE} gold coins each]`);
         console.log("\t Enter [0] --> Bye NPC [Go Next Round]");
 
-        const npcOption = Number(userInput("\t Option: "));
+        const npcOption = Number(userInput(chalk.bold.green("\t Option: ")));
 
         while (true) {
 
@@ -27,31 +27,30 @@ export default function npcRound(player: Character) {
                 console.log(`\n\t How many Health Potions you want dear ${player.name} ?`);
                 console.log("\t Enter [0] --> Go back.");
 
-                const healthPotions = Number(userInput("\t I want to buy: "));
+                const healthPotions = Number(userInput(chalk.bold.green("\t I want to buy: ")));
 
                 if (healthPotions === 0) break;
 
                 totalPrice = healthPotions * HEALTH_POTION_PRICE;
 
-                console.log(`\t Confirm: [${healthPotions}] Health Potions for [${totalPrice}] Gold Coins?`);
+                console.log(chalk.bold(`\t Confirm: BUY ${healthPotions} Health Potions for ${totalPrice} gold coins?`));
 
                 console.log("\t Enter [1] --> Yes");
                 console.log("\t Enter Other --> No");
 
-                const confirm = Number(userInput("\t Confirm: "));
+                const confirmTransaction = Number(userInput(chalk.bold.green("\t Confirm: ")));
 
-                if (confirm === 1) {
+                if (confirmTransaction === 1) {
 
                     if (totalPrice <= player.currentlyGoldCoins) {
                         GameStatistics.totalHealthPotionsBought += healthPotions;
                         player.usedGoldCoinsInNPC(totalPrice);
                         player.addHealthPotions(healthPotions);
 
-                        console.log(`\n\t Currently Cold Coins: ${player.currentlyGoldCoins}`);
-                        console.log(`\t Currently Health Potions: ${player.currentlyHealthPotions}`);
+                        console.log(chalk.green(`\n\t You now have: ${player.currentlyHealthPotions} Health Potions!`));
                         break;
                     } else {
-                        console.log("\n\t YOU DONT HAVE SUFFICIENT GOLD COINS!");
+                        console.log(chalk.bold.red("\n\t YOU DONT HAVE SUFFICIENT GOLD COINS!"));
                         break;
                     }
                 }
@@ -60,16 +59,19 @@ export default function npcRound(player: Character) {
 
                 console.log(`\n\t How many Mana Potions you wanna ${player.name} ?`);
                 console.log("\t Enter [0] --> Go back.");
-                const manaPotions = Number(userInput("\t I want to buy: "));
+
+                const manaPotions = Number(userInput(chalk.bold.green("\t I want to buy: ")));
 
                 if (manaPotions === 0) break;
 
                 totalPrice = manaPotions * MANA_POTION_PRICE;
 
-                console.log(`\t Confirm: ${manaPotions} for ${totalPrice} gold coins?`);
+                console.log(chalk.bold(`\t Confirm: BUY ${manaPotions} Mana Potions for ${totalPrice} gold coins?`));
+
                 console.log("\t Enter [1] --> Yes");
                 console.log("\t Enter Other --> No");
-                const confirmTransaction = Number(userInput("\t Confirm: "));
+
+                const confirmTransaction = Number(userInput(chalk.bold.green("\t Confirm: ")));
 
                 if (confirmTransaction === 1) {
 
@@ -78,21 +80,19 @@ export default function npcRound(player: Character) {
                         player.usedGoldCoinsInNPC(totalPrice);
                         player.addManaPotions(manaPotions);
 
-                        console.log(`\t Currently Cold Coins: ${player.currentlyGoldCoins}`);
-                        console.log(`\t Currently Mana Potions: ${player.currentlyManaPotions}`);
+                        console.log(chalk.green(`\n\t You now have: ${player.currentlyManaPotions} Mana Potions!`));
                         break;
                     } else {
-                        console.log("\n\t YOU DONT HAVE SUFFICIENT GOLD COINS!");
+                        console.log(chalk.bold.red("\n\t YOU DONT HAVE SUFFICIENT GOLD COINS!"));
                         break;
                     }
                 }
             }
             else if (npcOption === 0) {
-                continueNPC = false;
+                continueInNPCRound = false;
                 break;
             }
             else {
-                console.log("\t Enter a valid option!");
                 break;
             }
         }

@@ -1,5 +1,7 @@
 import LivingBeing from './LivingBeing';
 import chalk from 'chalk';
+import { SELECTED_GAME_MODE } from "../functions/chooseGameMode";
+
 interface IMonster {
     experienceForKill: number;
     minLoot: number;
@@ -20,7 +22,7 @@ export default abstract class Monster extends LivingBeing implements IMonster {
         public maxLoot: number,
         public type?: string,
     ) {
-        super(name, lifePoints, minAttack, maxAttack);
+        super(name, lifePoints * SELECTED_GAME_MODE, minAttack, maxAttack);
         this.experienceForKill = experienceForKill;
         this.type = type ?? 'normal';
     }
@@ -33,7 +35,7 @@ export default abstract class Monster extends LivingBeing implements IMonster {
 
     takeDamage(playerDamage: number): void {
         this.lifePoints -= playerDamage;
-        console.log(`\t Player Damage: ${playerDamage}`);
+        console.log(`\t Player Damage To Monster: ${playerDamage}`);
     }
 
     lootAfterKill(): number {

@@ -15,10 +15,10 @@ export default function createPlayerCharacter(): Character {
         playerName = String(userInput(chalk.bold.green("\t Enter your character name [only string between 4-10 characters]: ")));
     }
 
-    console.log("\n\n\t These are the vocations you can choose to play: ");
-    console.log("\n\t Enter [1] --> Warrior");
-    console.log("\n\t Enter [2] --> Mage");
-    console.log("\n\t Enter [3] --> Archer\n");
+    console.log(chalk.bold("\n\n\t THESE ARE THE VOCATIONS YOU CAN CHOOSE YO PLAY: "));
+    console.log("\n\t Enter [1] --> Warrior [weak on spells, low on mana, good on normal attacks and has a lot of health]");
+    console.log("\n\t Enter [2] --> Mage [strong in spells, has a lot of mana, low health and low normal attack]");
+    console.log("\n\t Enter [3] --> Archer [balanced in all]\n");
 
     let playerVocationOption = Number(userInput(chalk.bold.green("\t Choose your character vocation: ")));
 

@@ -8,4 +8,6 @@ export default class GameStatistics {
     static totalNormalAttacksUsed: number = 0;
     static totalDamageDealtToMonsters: number = 0;
     static totalDamageTakenFromMonsters: number = 0;
+    static totalWeakMagicSpellsUsed: number = 0;
+    static totalStrongMagicSpellsUsed: number = 0;
 }

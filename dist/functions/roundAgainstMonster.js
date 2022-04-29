@@ -7,7 +7,7 @@ const afterFight_1 = __importDefault(require("./afterFight"));
 const fightMonster_1 = __importDefault(require("./fightMonster"));
 function roundAgainstMonster(player, monster) {
     while (true) {
-        const playerStillAlive = fightMonster_1.default(player, monster);
+        const playerStillAlive = (0, fightMonster_1.default)(player, monster);
         if (playerStillAlive) {
             break;
         }
@@ -18,7 +18,7 @@ function roundAgainstMonster(player, monster) {
         }
     }
     if ((monster === null || monster === void 0 ? void 0 : monster.type) !== 'BOSS') {
-        afterFight_1.default(player, monster.name);
+        (0, afterFight_1.default)(player, monster.name);
     }
     return true;
 }

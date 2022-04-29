@@ -15,7 +15,7 @@ function startGameplay(player) {
     console.log('\n\t --------> FIGHT ROUND <--------');
     const monstersRounds = [new Orc_1.default(), new Werewolf_1.default(), new Vampire_1.default(), new Dragon_1.default(), new Ferumbras_1.default()];
     while (playerStillAlive) {
-        playerStillAlive = roundAgainstMonster_1.default(player, monstersRounds.shift());
+        playerStillAlive = (0, roundAgainstMonster_1.default)(player, monstersRounds.shift());
         if (playerStillAlive && monstersRounds.length === 0) {
             console.log(chalk_1.default.bold.blue("\n\n\t !!!!!!!!!!!CONGRATULATIONS!!!!!!!!!!!\n\n"));
             console.log(chalk_1.default.bold.blue(`\t !!!!!!!!!!!YOU WON THE GAME ${player.name}!!!!!!!!!!!\n\n`));

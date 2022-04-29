@@ -2,6 +2,7 @@ import Character from "../classes/Character";
 import Monster from "../classes/Monster";
 import afterFight from "./afterFight";
 import fightMonster from "./fightMonster";
+import chalk from 'chalk';
 
 export default function roundAgainstMonster(player: Character, monster: Monster): boolean {
 
@@ -12,8 +13,8 @@ export default function roundAgainstMonster(player: Character, monster: Monster)
         if (playerStillAlive) {
             break;
         } else {
-            console.log("\n\n\t ... YOU ARE DEAD...");
-            console.log("\n\n\t ... GAME OVER ...\n\n");
+            console.log(chalk.bold.red("\n\n\t ... YOU ARE DEAD..."));
+            console.log(chalk.bold.red("\n\n\t ... GAME OVER ...\n\n"));
             return false;
         }
     }

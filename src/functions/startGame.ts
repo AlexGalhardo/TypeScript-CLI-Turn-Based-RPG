@@ -3,6 +3,7 @@ import { userInput } from "../main";
 import createPlayerCharacter from "./createPlayerCharacter";
 import gameIntroduction from "./gameIntroduction";
 import startGameplay from "./startGameplay";
+import chooseGameMode from "./chooseGameMode";
 import chalk from 'chalk';
 
 
@@ -15,6 +16,8 @@ export default async function startGame() {
         console.log("\n");
 
         const player = createPlayerCharacter();
+
+        chooseGameMode();
 
         startGameplay(player);
 

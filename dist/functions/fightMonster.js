@@ -10,7 +10,7 @@ function fightMonster(player, monster) {
     while (true) {
         player.printCharacterRoundStatus();
         monster.printMonsterRoundStatus();
-        const playerActionOption = playerAction_1.default(player);
+        const playerActionOption = (0, playerAction_1.default)(player);
         console.log(chalk_1.default.bold('\n\t -------- ROUND STATUS --------'));
         if (playerActionOption === 0) {
             continue;

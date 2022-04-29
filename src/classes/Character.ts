@@ -1,4 +1,24 @@
-import { expToLevelUp, PLAYER_MAX_ATTACK, PLAYER_MIN_ATTACK, PLAYER_START_LIFE_POINTS, PLAYER_START_MANA_POINTS, ADD_PLAYER_ATTACK_PER_LEVEL } from "../GLOBAL";
+import {
+    expToLevelUp,
+    PLAYER_MAX_ATTACK,
+    PLAYER_MIN_ATTACK,
+    PLAYER_START_LIFE_POINTS,
+    PLAYER_START_MANA_POINTS,
+    ADD_WARRIOR_ATTACK_PER_LEVEL,
+    ADD_MAGE_ATTACK_PER_LEVEL,
+    ADD_ARCHER_ATTACK_PER_LEVEL,
+    PLAYER_MIN_MAGIC_ATTACK,
+    PLAYER_MAX_MAGIC_ATTACK,
+    ADD_WARRIOR_MAGIC_ATTACK_PER_LEVEL,
+    ADD_ARCHER_MAGIC_ATTACK_PER_LEVEL,
+    ADD_MAGE_MAGIC_ATTACK_PER_LEVEL,
+    HEALTH_POTION_MAX_CURE,
+    HEALTH_POTION_MIN_CURE,
+    MANA_POTION_MAX_CURE,
+    MANA_POTION_MIN_CURE,
+    PLAYER_STRONG_SPELL_MANA_COST,
+    PLAYER_WEAK_SPELL_MANA_COST
+} from "../GLOBAL";
 import { userInput } from "../main";
 import GameStatistics from "./GameStatistics";
 import LivingBeing, { ILivingBeing } from "./LivingBeing";
@@ -40,6 +60,8 @@ export default abstract class Character extends LivingBeing implements ICharacte
     public currentlyHealthPotions: number;
     public currentlyManaPotions: number;
     public currentlyGoldCoins: number;
+    public minMagicAttack: number;
+    public maxMagicAttack: number;
 
     constructor(
         public vocation: string,
@@ -58,13 +80,13 @@ export default abstract class Character extends LivingBeing implements ICharacte
 
         this.currentlyLevel = 1;
         this.currentlyEXP = 0;
-        this.expToNextLevel = 100;
+        this.expToNextLevel = expToLevelUp[2];
 
-        this.maxLifePoints = 1000;
-        this.maxManaPoints = 100;
+        this.maxLifePoints = PLAYER_START_LIFE_POINTS;
+        this.maxManaPoints = PLAYER_START_MANA_POINTS;
 
-        this.minAttack = minAttack;
-        this.maxAttack = maxAttack;
+        this.minMagicAttack = PLAYER_MIN_MAGIC_ATTACK;
+        this.maxMagicAttack = PLAYER_MAX_MAGIC_ATTACK;
 
         this.manaPoints = PLAYER_START_MANA_POINTS;
 
@@ -82,8 +104,8 @@ export default abstract class Character extends LivingBeing implements ICharacte
 
     printCharacterRoundStatus() {
         console.log(chalk.bold("\n\t --- PLAYER STATUS ---"));
-        console.log(chalk.bold.red(`\t Life: ${this.lifePoints}`));
-        console.log(`\t Mana: ${this.manaPoints}`);
+        console.log(chalk.bold.red(`\t Life: ${this.lifePoints}`) + ` / ${this.maxLifePoints}`);
+        console.log(`\t Mana: ${this.manaPoints} / ${this.maxManaPoints}`);
         console.log(`\t Health Potions: ${this.currentlyHealthPotions}`);
         console.log(`\t Mana Potions: ${this.currentlyManaPotions}`);
         console.log(`\t Regenerated: ${this.regenerateLifePointsPerRound} points of life!`);
@@ -93,7 +115,7 @@ export default abstract class Character extends LivingBeing implements ICharacte
     takeDamage(monsterDamage: number): void {
         GameStatistics.totalDamageTakenFromMonsters += monsterDamage;
         this.lifePoints -= monsterDamage;
-        console.log(`\t Monster Damage: ${monsterDamage}`);
+        console.log(`\t Monster Damage To Player: ${monsterDamage}`);
     }
 
     getLootMonster(lootMonster: number): void {
@@ -123,18 +145,51 @@ export default abstract class Character extends LivingBeing implements ICharacte
         this.manaPoints += this.regenerateManaPointsPerRound;
     }
 
+    useWeakMagicSpell(): number {
+        this.manaPoints -= PLAYER_WEAK_SPELL_MANA_COST;
+        return (Math.floor(Math.random() * this.maxMagicAttack) + this.minMagicAttack) * 1.25;
+    }
+
+    useStrongMagicSpell(): number {
+        this.manaPoints -= PLAYER_STRONG_SPELL_MANA_COST;
+        return (Math.floor(Math.random() * this.maxMagicAttack) + this.minMagicAttack) * 2;
+    }
+
     verifyAndUpdateLevelStatus(): boolean {
         if (this.currentlyEXP >= this.expToNextLevel) {
             this.currentlyLevel++;
             this.expToNextLevel === expToLevelUp[this.currentlyLevel];
             this.maxLifePoints += this.addLifePointsPerLevel;
             this.maxManaPoints += this.addManaPointsPerLevel;
-            this.minAttack += ADD_PLAYER_ATTACK_PER_LEVEL;
-            this.maxAttack += ADD_PLAYER_ATTACK_PER_LEVEL;
-            return true
+
+            this.minAttack += this.vocation === "WARRIOR"
+                ? ADD_WARRIOR_ATTACK_PER_LEVEL
+                : this.vocation === "ARCHER"
+                    ? ADD_ARCHER_ATTACK_PER_LEVEL
+                    : ADD_MAGE_ATTACK_PER_LEVEL;
+
+            this.maxAttack += this.vocation === "WARRIOR"
+                ? ADD_WARRIOR_ATTACK_PER_LEVEL
+                : this.vocation === "ARCHER"
+                    ? ADD_ARCHER_ATTACK_PER_LEVEL
+                    : ADD_MAGE_ATTACK_PER_LEVEL;
+
+            this.minMagicAttack += this.vocation === "WARRIOR"
+                ? ADD_WARRIOR_MAGIC_ATTACK_PER_LEVEL
+                : this.vocation === "ARCHER"
+                    ? ADD_ARCHER_MAGIC_ATTACK_PER_LEVEL
+                    : ADD_MAGE_MAGIC_ATTACK_PER_LEVEL;
+
+            this.maxMagicAttack += this.vocation === "WARRIOR"
+                ? ADD_WARRIOR_MAGIC_ATTACK_PER_LEVEL
+                : this.vocation === "ARCHER"
+                    ? ADD_ARCHER_MAGIC_ATTACK_PER_LEVEL
+                    : ADD_MAGE_MAGIC_ATTACK_PER_LEVEL;
+
+            return true // player level up?
         }
 
-        return false
+        return false // player level up?
     }
 
     useHealthPotion(): void {
@@ -144,7 +199,7 @@ export default abstract class Character extends LivingBeing implements ICharacte
             console.log(`\n\t You currently have: ${this.currentlyHealthPotions} health potions`);
             console.log(`\t Enter 0 to stop using health potions`);
 
-            let healthPotionsToUse = Number(userInput("\t How many Health Potions you want to use: "));
+            let healthPotionsToUse = Number(userInput(chalk.bold.green("\t How many Health Potions you want to use: ")));
 
             if (healthPotionsToUse === 0) break;
 
@@ -153,7 +208,7 @@ export default abstract class Character extends LivingBeing implements ICharacte
                 console.log("\n");
 
                 while (healthPotionsToUse !== 0) {
-                    const healthCure = Math.floor(Math.random() * 125) + 75;
+                    const healthCure = Math.floor(Math.random() * HEALTH_POTION_MAX_CURE) + HEALTH_POTION_MIN_CURE;
                     this.lifePoints += healthCure;
                     if (this.lifePoints > this.maxLifePoints) this.lifePoints = this.maxLifePoints;
                     this.currentlyHealthPotions -= 1;
@@ -174,7 +229,7 @@ export default abstract class Character extends LivingBeing implements ICharacte
             console.log(`\n\t You currently have: ${this.currentlyManaPotions} mana potions`);
             console.log("\t Enter 0 to STOP using mana potions");
 
-            let manaPotionsToUse = Number(userInput("\t How many Mana Potions you want to use: "));
+            let manaPotionsToUse = Number(userInput(chalk.bold.green("\t How many Mana Potions you want to use: ")));
 
             if (manaPotionsToUse === 0) break;
 
@@ -185,7 +240,7 @@ export default abstract class Character extends LivingBeing implements ICharacte
                 console.log("\n");
 
                 while (manaPotionsToUse !== 0) {
-                    const manaCure = Math.floor(Math.random() * 125) + 75;
+                    const manaCure = Math.floor(Math.random() * MANA_POTION_MAX_CURE) + MANA_POTION_MIN_CURE;
                     this.manaPoints += manaCure;
                     if (this.manaPoints > this.maxManaPoints) this.manaPoints = this.maxManaPoints;
                     this.currentlyManaPotions -= 1;

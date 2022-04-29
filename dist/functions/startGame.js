@@ -20,11 +20,11 @@ const startGameplay_1 = __importDefault(require("./startGameplay"));
 const chalk_1 = __importDefault(require("chalk"));
 function startGame() {
     return __awaiter(this, void 0, void 0, function* () {
-        gameIntroduction_1.default();
+        (0, gameIntroduction_1.default)();
         while (true) {
             console.log("\n");
-            const player = createPlayerCharacter_1.default();
-            startGameplay_1.default(player);
+            const player = (0, createPlayerCharacter_1.default)();
+            (0, startGameplay_1.default)(player);
             console.log(chalk_1.default.bold.yellow('\n\t -------- GAME STATISTICS --------'));
             console.log(`\t Total Gold Coins Looted = ${GameStatistics_1.default.totalGoldCoinsLooted}`);
             console.log(`\t Total Gold Coins Used = ${GameStatistics_1.default.totalGoldCoinsUsed}`);
@@ -38,7 +38,7 @@ function startGame() {
             console.log("\n\n\t Do you wanna play again?");
             console.log("\t Enter [1] --> YES");
             console.log("\t Enter [2] --> NO");
-            const playAgain = Number(main_1.userInput("\t Play again: "));
+            const playAgain = Number((0, main_1.userInput)("\t Play again: "));
             if (playAgain === 1) {
                 continue;
             }

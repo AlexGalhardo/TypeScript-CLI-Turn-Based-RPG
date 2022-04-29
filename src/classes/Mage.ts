@@ -4,7 +4,7 @@ import Character from "./Character";
 export default class Mage extends Character {
     constructor(playerName: string) {
         super(
-            "Mage",
+            "MAGE",
             playerName,
             PLAYER_MIN_ATTACK,
             PLAYER_MAX_ATTACK,

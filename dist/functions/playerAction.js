@@ -12,7 +12,7 @@ function playerAction(player) {
         console.log('\t Enter [2] --> Use Health Potion');
         console.log('\t Enter [3] --> Use Mana Potion');
         console.log('\t Enter [4] --> Use Spell');
-        const playerAction = Number(main_1.userInput(chalk_1.default.bold.green('\t Option: ')));
+        const playerAction = Number((0, main_1.userInput)(chalk_1.default.bold.green('\t Option: ')));
         if (playerAction === 1) {
             return 1;
             break;

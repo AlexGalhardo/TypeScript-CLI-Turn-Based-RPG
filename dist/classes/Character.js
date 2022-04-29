@@ -88,7 +88,7 @@ class Character extends LivingBeing_1.default {
         while (true) {
             console.log(`\n\t You currently have: ${this.currentlyHealthPotions} health potions`);
             console.log(`\t Enter 0 to stop using health potions`);
-            let healthPotionsToUse = Number(main_1.userInput("\t How many Health Potions you want to use: "));
+            let healthPotionsToUse = Number((0, main_1.userInput)("\t How many Health Potions you want to use: "));
             if (healthPotionsToUse === 0)
                 break;
             else if (healthPotionsToUse <= this.currentlyHealthPotions) {
@@ -113,7 +113,7 @@ class Character extends LivingBeing_1.default {
         while (true) {
             console.log(`\n\t You currently have: ${this.currentlyManaPotions} mana potions`);
             console.log("\t Enter 0 to STOP using mana potions");
-            let manaPotionsToUse = Number(main_1.userInput("\t How many Mana Potions you want to use: "));
+            let manaPotionsToUse = Number((0, main_1.userInput)("\t How many Mana Potions you want to use: "));
             if (manaPotionsToUse === 0)
                 break;
             else if (manaPotionsToUse <= this.currentlyManaPotions) {

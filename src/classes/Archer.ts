@@ -4,7 +4,7 @@ import Character from "./Character";
 export default class Archer extends Character {
     constructor(playerName: string) {
         super(
-            "Archer",
+            "ARCHER",
             playerName,
             PLAYER_MIN_ATTACK,
             PLAYER_MAX_ATTACK,

@@ -20,8 +20,8 @@ export default function startGameplay(player: Character) {
         playerStillAlive = roundAgainstMonster(player, monstersRounds.shift() as Monster);
 
         if (playerStillAlive && monstersRounds.length === 0) {
-            console.log(chalk.bold.blue("\n\n\t !!!!!!!!!!!CONGRATULATIONS!!!!!!!!!!!\n\n"));
-            console.log(chalk.bold.blue(`\t !!!!!!!!!!!YOU WON THE GAME ${player.name}!!!!!!!!!!!\n\n`));
+            console.log(chalk.bold.blue("\n\n\t ..... CONGRATULATIONS .....\n\n"));
+            console.log(chalk.bold.blue(`\t ..... YOU WON THE GAME ${player.name} .....\n\n`));
             break;
         }
     }

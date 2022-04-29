@@ -4,7 +4,7 @@ import Monster from "./Monster";
 export default class Orc extends Monster {
     constructor() {
         super(
-            "Orc",
+            "ORC",
             ORC_LIFE_POINTS,
             ORC_MIN_ATTACK,
             ORC_MAX_ATTACK,
