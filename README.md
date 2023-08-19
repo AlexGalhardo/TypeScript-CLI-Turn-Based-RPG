@@ -9,11 +9,11 @@
 ## How to play this game
 - Clone repository
 ```
-git clone https://github.com/AlexGalhardo/TypeScript-CLI-RPG.git
+git clone https://github.com/AlexGalhardo/TypeScript-CLI-Turn-Based-RPG/.git
 ```
 - Enter folder
 ```
-cd TypeScript-CLI-RPG
+cd TypeScript-CLI-Turn-Based-RPG/
 ```
 - Install dependencies
 ```
