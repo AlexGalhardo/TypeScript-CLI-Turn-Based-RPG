@@ -1,24 +1,30 @@
 <br>
-<h3 align="center">TypeScript CLI RPG 2.0</h3>
+<h2 align="center">TypeScript CLI Turn Based RPG</h2>
 
 ![gameplay-main](https://user-images.githubusercontent.com/19540357/166071131-9a046912-c159-44d2-9ccd-4e6de01bee16.png)
+
 ## Introduction
   - This is the refactored version of [Python CLI RPG](https://github.com/AlexGalhardo/Python-CLI-RPG) using TypeScript.
   - I created this project mostly to improve my logic, OOP and clean code skills, refactoring the previously project who was written with Python, and of course, to learn mostly TypeScript syntax.
 
-## How To Use This Program (Play The Game)
-  - $ git clone https://github.com/AlexGalhardo/TypeScript-CLI-RPG.git
-  - $ cd TypeScript-CLI-RPG
-  - $ npm install
-  - $ npm run start:game
-  - Have fun :D
-
-## Tools I Used
-- Linux Mint XFCE 20.03 Una
-- TypeScript 4.6
-- Node 16.x and Npm 8.x
-- VSCode
-- A lot of documentation, stackoverflow, youtube and try/error
+## How to play this game
+- Clone repository
+```
+git clone https://github.com/AlexGalhardo/TypeScript-CLI-RPG.git
+```
+- Enter folder
+```
+cd TypeScript-CLI-RPG
+```
+- Install dependencies
+```
+npm install
+```
+- Start game
+```
+npm run start:game
+```
+- Have fun :D
 
 ## Game In Action Images 
 ![rpg-print-1](https://user-images.githubusercontent.com/19540357/166070541-186ea5f3-ebc0-4a70-aed5-91a8b1a1539f.png)
