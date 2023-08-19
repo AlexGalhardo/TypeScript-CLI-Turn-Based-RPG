@@ -1,5 +1,5 @@
 <br>
-<h2 align="center">TypeScript CLI Turn Based RPG</h2>
+<h2 align="center">TypeScript CLI Turn Based RPG 🎮</h2>
 
 ![gameplay-main](https://user-images.githubusercontent.com/19540357/166071131-9a046912-c159-44d2-9ccd-4e6de01bee16.png)
 
