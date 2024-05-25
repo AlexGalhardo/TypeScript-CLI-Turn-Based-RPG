@@ -1,9 +1,10 @@
 {
   "name": "typescript-cli-turn-based-rpg",
   "scripts": {
-    "dev": "bun run src/main.ts",
+    "dev": "bun run src/start.ts",
+	"start": "./typescript_cli_rpg_game",
 	"format": "prettier --write \"src/**/*.ts\"",
-	"build": "bun build --compile --minify ./src/main.ts --outfile typescript_cli_rpg_game",
+	"build": "bun build --compile --minify ./src/start.ts --outfile typescript_cli_rpg_game",
 	"husky": "husky install"
   },
   "dependencies": {
