@@ -1,4 +1,11 @@
-import { FERUMBRAS_LIFE_POINTS, FERUMBRAS_MIN_ATTACK, FERUMBRAS_MAX_ATTACK, FERUMBRAS_EXPERIENCE_FOR_KILL, FERUMBRAS_MIN_LOOT, FERUMBRAS_MAX_LOOT } from "../GLOBAL";
+import {
+    FERUMBRAS_LIFE_POINTS,
+    FERUMBRAS_MIN_ATTACK,
+    FERUMBRAS_MAX_ATTACK,
+    FERUMBRAS_EXPERIENCE_FOR_KILL,
+    FERUMBRAS_MIN_LOOT,
+    FERUMBRAS_MAX_LOOT,
+} from "../GLOBAL";
 import Monster from "./Monster";
 
 export default class Ferumbras extends Monster {
@@ -11,7 +18,7 @@ export default class Ferumbras extends Monster {
             FERUMBRAS_EXPERIENCE_FOR_KILL,
             FERUMBRAS_MIN_LOOT,
             FERUMBRAS_MAX_LOOT,
-            'BOSS' // monster type
+            "BOSS", // monster type
         );
     }
 }

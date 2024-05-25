@@ -4,28 +4,45 @@
 ![gameplay-main](https://user-images.githubusercontent.com/19540357/166071131-9a046912-c159-44d2-9ccd-4e6de01bee16.png)
 
 ## Introduction
-- This is the refactored version of [Python CLI RPG](https://github.com/AlexGalhardo/Python-CLI-RPG) I created to learn TypeScript syntax.
+- Refactored version of [Python CLI Turn Based RPG](https://github.com/AlexGalhardo/Python-CLI-Turn-Based-RPG) I created to learn TypeScript syntax.
 
 ## How to play this game
-- Clone repository
+
+### Prerequisites
+   - Install Bun: https://bun.sh/docs/installation
+
+1. Clone repository
 ```
-git clone https://github.com/AlexGalhardo/TypeScript-CLI-Turn-Based-RPG/.git
+git clone git@github.com:AlexGalhardo/TypeScript-CLI-Turn-Based-RPG.git
 ```
-- Enter folder
+
+2. Enter folder
 ```
 cd TypeScript-CLI-Turn-Based-RPG/
 ```
-- Install dependencies
-```
-npm install
-```
-- Start game
-```
-npm run start:game
-```
-- Have fun :D
 
-## Game In Action Images 
+3. Install dependencies
+```
+bun install
+```
+
+4. Start game dev
+```
+bun run dev
+```
+
+## Building single file binary
+- a. Create build
+```
+bun run build
+```
+- b. Execute binary file
+```
+./typescript_cli_rpg_game
+```
+
+## Images
+
 ![rpg-print-1](https://user-images.githubusercontent.com/19540357/166070541-186ea5f3-ebc0-4a70-aed5-91a8b1a1539f.png)
 ![rpg-print-2](https://user-images.githubusercontent.com/19540357/166070546-36dac2ca-ab43-4dc8-8822-887d4391b4e8.png)
 ![rpg-print-3](https://user-images.githubusercontent.com/19540357/166070551-e805edc7-0516-4c9b-a0df-bb9f2040149b.png)

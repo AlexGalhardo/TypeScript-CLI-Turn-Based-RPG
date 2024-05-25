@@ -17,12 +17,12 @@ import {
     MANA_POTION_MAX_CURE,
     MANA_POTION_MIN_CURE,
     PLAYER_STRONG_SPELL_MANA_COST,
-    PLAYER_WEAK_SPELL_MANA_COST
+    PLAYER_WEAK_SPELL_MANA_COST,
 } from "../GLOBAL";
 import { userInput } from "../main";
 import GameStatistics from "./GameStatistics";
 import LivingBeing, { ILivingBeing } from "./LivingBeing";
-import chalk from 'chalk';
+import chalk from "chalk";
 
 interface ICharacter extends ILivingBeing {
     currentlyLevel: number;
@@ -71,7 +71,7 @@ export default abstract class Character extends LivingBeing implements ICharacte
         public addLifePointsPerLevel: number,
         public addManaPointsPerLevel: number,
         public regenerateLifePointsPerRound: number,
-        public regenerateManaPointsPerRound: number
+        public regenerateManaPointsPerRound: number,
     ) {
         super(name, PLAYER_START_LIFE_POINTS, PLAYER_MIN_ATTACK, PLAYER_MAX_ATTACK);
 
@@ -133,11 +133,11 @@ export default abstract class Character extends LivingBeing implements ICharacte
     }
 
     addHealthPotions(healthPotions: number): void {
-        this.currentlyHealthPotions += healthPotions
+        this.currentlyHealthPotions += healthPotions;
     }
 
     addManaPotions(manaPotions: number): void {
-        this.currentlyManaPotions += manaPotions
+        this.currentlyManaPotions += manaPotions;
     }
 
     regenerateEachRound(): void {
@@ -162,47 +162,50 @@ export default abstract class Character extends LivingBeing implements ICharacte
             this.maxLifePoints += this.addLifePointsPerLevel;
             this.maxManaPoints += this.addManaPointsPerLevel;
 
-            this.minAttack += this.vocation === "WARRIOR"
-                ? ADD_WARRIOR_ATTACK_PER_LEVEL
-                : this.vocation === "ARCHER"
-                    ? ADD_ARCHER_ATTACK_PER_LEVEL
-                    : ADD_MAGE_ATTACK_PER_LEVEL;
+            this.minAttack +=
+                this.vocation === "WARRIOR"
+                    ? ADD_WARRIOR_ATTACK_PER_LEVEL
+                    : this.vocation === "ARCHER"
+                      ? ADD_ARCHER_ATTACK_PER_LEVEL
+                      : ADD_MAGE_ATTACK_PER_LEVEL;
 
-            this.maxAttack += this.vocation === "WARRIOR"
-                ? ADD_WARRIOR_ATTACK_PER_LEVEL
-                : this.vocation === "ARCHER"
-                    ? ADD_ARCHER_ATTACK_PER_LEVEL
-                    : ADD_MAGE_ATTACK_PER_LEVEL;
+            this.maxAttack +=
+                this.vocation === "WARRIOR"
+                    ? ADD_WARRIOR_ATTACK_PER_LEVEL
+                    : this.vocation === "ARCHER"
+                      ? ADD_ARCHER_ATTACK_PER_LEVEL
+                      : ADD_MAGE_ATTACK_PER_LEVEL;
 
-            this.minMagicAttack += this.vocation === "WARRIOR"
-                ? ADD_WARRIOR_MAGIC_ATTACK_PER_LEVEL
-                : this.vocation === "ARCHER"
-                    ? ADD_ARCHER_MAGIC_ATTACK_PER_LEVEL
-                    : ADD_MAGE_MAGIC_ATTACK_PER_LEVEL;
+            this.minMagicAttack +=
+                this.vocation === "WARRIOR"
+                    ? ADD_WARRIOR_MAGIC_ATTACK_PER_LEVEL
+                    : this.vocation === "ARCHER"
+                      ? ADD_ARCHER_MAGIC_ATTACK_PER_LEVEL
+                      : ADD_MAGE_MAGIC_ATTACK_PER_LEVEL;
 
-            this.maxMagicAttack += this.vocation === "WARRIOR"
-                ? ADD_WARRIOR_MAGIC_ATTACK_PER_LEVEL
-                : this.vocation === "ARCHER"
-                    ? ADD_ARCHER_MAGIC_ATTACK_PER_LEVEL
-                    : ADD_MAGE_MAGIC_ATTACK_PER_LEVEL;
+            this.maxMagicAttack +=
+                this.vocation === "WARRIOR"
+                    ? ADD_WARRIOR_MAGIC_ATTACK_PER_LEVEL
+                    : this.vocation === "ARCHER"
+                      ? ADD_ARCHER_MAGIC_ATTACK_PER_LEVEL
+                      : ADD_MAGE_MAGIC_ATTACK_PER_LEVEL;
 
-            return true // player level up?
+            return true; // player level up?
         }
 
-        return false // player level up?
+        return false; // player level up?
     }
 
     useHealthPotion(): void {
-
         while (true) {
-
             console.log(`\n\t You currently have: ${this.currentlyHealthPotions} health potions`);
             console.log(`\t Enter 0 to stop using health potions`);
 
-            let healthPotionsToUse = Number(userInput(chalk.bold.green("\t How many Health Potions you want to use: ")));
+            let healthPotionsToUse = Number(
+                userInput(chalk.bold.green("\t How many Health Potions you want to use: ")),
+            );
 
             if (healthPotionsToUse === 0) break;
-
             else if (healthPotionsToUse <= this.currentlyHealthPotions) {
                 GameStatistics.totalHealthPotionsUsed += healthPotionsToUse;
                 console.log("\n");
@@ -215,26 +218,21 @@ export default abstract class Character extends LivingBeing implements ICharacte
                     console.log(`\t You healed ${healthCure} points of life!`);
                     healthPotionsToUse -= 1;
                 }
-            }
-            else {
+            } else {
                 console.log("\n\t You don't have sufficient health potions!");
             }
         }
     }
 
     useManaPotion(): void {
-
         while (true) {
-
             console.log(`\n\t You currently have: ${this.currentlyManaPotions} mana potions`);
             console.log("\t Enter 0 to STOP using mana potions");
 
             let manaPotionsToUse = Number(userInput(chalk.bold.green("\t How many Mana Potions you want to use: ")));
 
             if (manaPotionsToUse === 0) break;
-
             else if (manaPotionsToUse <= this.currentlyManaPotions) {
-
                 GameStatistics.totalManaPotionsUsed += manaPotionsToUse;
 
                 console.log("\n");
@@ -247,8 +245,7 @@ export default abstract class Character extends LivingBeing implements ICharacte
                     console.log(`\t You healed ${manaCure} points of mana!`);
                     manaPotionsToUse -= 1;
                 }
-            }
-            else {
+            } else {
                 console.log("\n\t You dont have sufficient mana potions!");
             }
         }

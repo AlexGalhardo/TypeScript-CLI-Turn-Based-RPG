@@ -1,4 +1,4 @@
-import chalk from 'chalk';
+import chalk from "chalk";
 
 export default function gameIntroduction(): void {
     console.log(chalk.bold.blue("\n\n\t WELCOME TO TYPESCRIPT CLI RPG!"));

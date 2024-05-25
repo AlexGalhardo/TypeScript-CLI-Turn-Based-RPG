@@ -8,7 +8,12 @@ export interface ILivingBeing {
 }
 
 export default abstract class LivingBeing implements ILivingBeing {
-    constructor(public name: string, public lifePoints: number, public minAttack: number, public maxAttack: number) {
+    constructor(
+        public name: string,
+        public lifePoints: number,
+        public minAttack: number,
+        public maxAttack: number,
+    ) {
         this.name = name;
         this.lifePoints = lifePoints;
         this.minAttack = minAttack;

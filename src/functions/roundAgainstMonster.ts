@@ -2,12 +2,10 @@ import Character from "../classes/Character";
 import Monster from "../classes/Monster";
 import afterFight from "./afterFight";
 import fightMonster from "./fightMonster";
-import chalk from 'chalk';
+import chalk from "chalk";
 
 export default function roundAgainstMonster(player: Character, monster: Monster): boolean {
-
     while (true) {
-
         const playerStillAlive: boolean = fightMonster(player, monster);
 
         if (playerStillAlive) {
@@ -19,7 +17,7 @@ export default function roundAgainstMonster(player: Character, monster: Monster)
         }
     }
 
-    if (monster?.type !== 'BOSS') {
+    if (monster?.type !== "BOSS") {
         afterFight(player, monster.name);
     }
 

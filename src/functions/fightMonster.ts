@@ -3,50 +3,49 @@ import GameStatistics from "../classes/GameStatistics";
 import Monster from "../classes/Monster";
 import playerAction from "./playerAction";
 import { SELECTED_GAME_MODE } from "./chooseGameMode";
-import chalk from 'chalk';
+import chalk from "chalk";
 
 export default function fightMonster(player: Character, monster: Monster): boolean {
-
     while (true) {
-
         player.printCharacterRoundStatus();
         monster.printMonsterRoundStatus();
 
         const playerActionOption: number = playerAction(player);
 
-        console.log(chalk.bold('\n\t -------- ROUND STATUS --------'));
+        console.log(chalk.bold("\n\t -------- ROUND STATUS --------"));
 
         if (playerActionOption === 0) {
-            continue
+            continue;
         } else {
-            if (playerActionOption === 1) { // NORMAL ATTACK
-                GameStatistics.totalNormalAttacksUsed++;;
+            if (playerActionOption === 1) {
+                // NORMAL ATTACK
+                GameStatistics.totalNormalAttacksUsed++;
                 const damageToMonster = player.attack();
                 GameStatistics.totalDamageDealtToMonsters += damageToMonster;
-                console.log('\t Player Used Normal Attack');
+                console.log("\t Player Used Normal Attack");
                 monster.takeDamage(damageToMonster);
-            }
-            else if (playerActionOption === 2) { // USE HEALTH POTION
-                GameStatistics.totalHealthPotionsUsed++;;
+            } else if (playerActionOption === 2) {
+                // USE HEALTH POTION
+                GameStatistics.totalHealthPotionsUsed++;
                 player.useHealthPotion();
-            }
-            else if (playerActionOption === 3) { // USE MANA POTION
+            } else if (playerActionOption === 3) {
+                // USE MANA POTION
                 GameStatistics.totalManaPotionsUsed++;
                 player.useManaPotion();
-            }
-            else if (playerActionOption === 4) { // USE WEAK MAGIC SPELL
+            } else if (playerActionOption === 4) {
+                // USE WEAK MAGIC SPELL
                 GameStatistics.totalWeakMagicSpellsUsed++;
                 const damageToMonster = player.useWeakMagicSpell();
                 GameStatistics.totalDamageDealtToMonsters += damageToMonster;
-                console.log('\t Player Used Weak Magic Spell');
+                console.log("\t Player Used Weak Magic Spell");
                 monster.takeDamage(damageToMonster);
-            }
-            else if (playerActionOption === 5) { // USE STRONG MAGIC SPELL
+            } else if (playerActionOption === 5) {
+                // USE STRONG MAGIC SPELL
                 GameStatistics.totalStrongMagicSpellsUsed++;
                 const damageToMonster = player.useStrongMagicSpell();
                 GameStatistics.totalDamageDealtToMonsters += damageToMonster;
                 monster.takeDamage(damageToMonster);
-                console.log('\t Player Used Strong Magic Spell');
+                console.log("\t Player Used Strong Magic Spell");
             }
 
             const monsterDamage = monster.attack() * SELECTED_GAME_MODE;

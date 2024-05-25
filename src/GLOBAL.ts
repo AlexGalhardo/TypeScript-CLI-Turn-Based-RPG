@@ -1,6 +1,6 @@
-export const GAME_MODE_EASY = 0.5 // monsters will do 0.5x damage to player
-export const GAME_MODE_NORMAL = 1 // monster will do 1x damage to player
-export const GAME_MODE_HARD = 1.5 // monster will do 1.5x damage to player
+export const GAME_MODE_EASY = 0.5; // monsters will do 0.5x damage to player
+export const GAME_MODE_NORMAL = 1; // monster will do 1x damage to player
+export const GAME_MODE_HARD = 1.5; // monster will do 1.5x damage to player
 
 // index 0 = level 0
 // index 1 = level 1

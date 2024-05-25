@@ -2,16 +2,14 @@ import Character from "../classes/Character";
 import GameStatistics from "../classes/GameStatistics";
 import { HEALTH_POTION_PRICE, MANA_POTION_PRICE } from "../GLOBAL";
 import { userInput } from "../main";
-import chalk from 'chalk';
+import chalk from "chalk";
 
 export default function npcRound(player: Character) {
-
     let totalPrice = 0;
 
     let continueInNPCRound = true;
 
     while (continueInNPCRound) {
-
         console.log(chalk.bold("\n\t ---> NPC ROUND <--- "));
         console.log(chalk.bold.yellow(`\t Currently Gold Coins: ${player.currentlyGoldCoins}`));
         console.log(`\t Enter [1] --> Buy Health Potions [${HEALTH_POTION_PRICE} gold coins each]`);
@@ -21,9 +19,7 @@ export default function npcRound(player: Character) {
         const npcOption = Number(userInput(chalk.bold.green("\t Option: ")));
 
         while (true) {
-
             if (npcOption === 1) {
-
                 console.log(`\n\t How many Health Potions you want dear ${player.name} ?`);
                 console.log("\t Enter [0] --> Go back.");
 
@@ -33,7 +29,9 @@ export default function npcRound(player: Character) {
 
                 totalPrice = healthPotions * HEALTH_POTION_PRICE;
 
-                console.log(chalk.bold(`\t Confirm: BUY ${healthPotions} Health Potions for ${totalPrice} gold coins?`));
+                console.log(
+                    chalk.bold(`\t Confirm: BUY ${healthPotions} Health Potions for ${totalPrice} gold coins?`),
+                );
 
                 console.log("\t Enter [1] --> Yes");
                 console.log("\t Enter Other --> No");
@@ -41,7 +39,6 @@ export default function npcRound(player: Character) {
                 const confirmTransaction = Number(userInput(chalk.bold.green("\t Confirm: ")));
 
                 if (confirmTransaction === 1) {
-
                     if (totalPrice <= player.currentlyGoldCoins) {
                         GameStatistics.totalHealthPotionsBought += healthPotions;
                         player.usedGoldCoinsInNPC(totalPrice);
@@ -54,9 +51,7 @@ export default function npcRound(player: Character) {
                         break;
                     }
                 }
-            }
-            else if (npcOption === 2) {
-
+            } else if (npcOption === 2) {
                 console.log(`\n\t How many Mana Potions you wanna ${player.name} ?`);
                 console.log("\t Enter [0] --> Go back.");
 
@@ -74,7 +69,6 @@ export default function npcRound(player: Character) {
                 const confirmTransaction = Number(userInput(chalk.bold.green("\t Confirm: ")));
 
                 if (confirmTransaction === 1) {
-
                     if (totalPrice <= player.currentlyGoldCoins) {
                         GameStatistics.totalManaPotionsBought += manaPotions;
                         player.usedGoldCoinsInNPC(totalPrice);
@@ -87,12 +81,10 @@ export default function npcRound(player: Character) {
                         break;
                     }
                 }
-            }
-            else if (npcOption === 0) {
+            } else if (npcOption === 0) {
                 continueInNPCRound = false;
                 break;
-            }
-            else {
+            } else {
                 break;
             }
         }

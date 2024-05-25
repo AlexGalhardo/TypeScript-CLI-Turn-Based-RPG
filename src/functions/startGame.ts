@@ -4,15 +4,12 @@ import createPlayerCharacter from "./createPlayerCharacter";
 import gameIntroduction from "./gameIntroduction";
 import startGameplay from "./startGameplay";
 import chooseGameMode from "./chooseGameMode";
-import chalk from 'chalk';
-
+import chalk from "chalk";
 
 export default async function startGame() {
-
     gameIntroduction();
 
     while (true) {
-
         console.log("\n");
 
         const player = createPlayerCharacter();
@@ -21,7 +18,7 @@ export default async function startGame() {
 
         startGameplay(player);
 
-        console.log(chalk.bold.yellow('\n\t -------- GAME STATISTICS --------'));
+        console.log(chalk.bold.yellow("\n\t -------- GAME STATISTICS --------"));
         console.log(`\t Total Gold Coins Looted = ${GameStatistics.totalGoldCoinsLooted}`);
         console.log(`\t Total Gold Coins Used = ${GameStatistics.totalGoldCoinsUsed}`);
         console.log(`\t Total Health Potions Bought = ${GameStatistics.totalHealthPotionsBought}`);

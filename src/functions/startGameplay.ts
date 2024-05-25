@@ -6,13 +6,12 @@ import Orc from "../classes/Orc";
 import Vampire from "../classes/Vampire";
 import Werewolf from "../classes/Werewolf";
 import roundAgainstMonster from "./roundAgainstMonster";
-import chalk from 'chalk';
+import chalk from "chalk";
 
 export default function startGameplay(player: Character) {
-
     let playerStillAlive = true;
 
-    console.log('\n\t --------> FIGHT ROUND <--------')
+    console.log("\n\t --------> FIGHT ROUND <--------");
 
     const monstersRounds = [new Orc(), new Werewolf(), new Vampire(), new Dragon(), new Ferumbras()];
 
